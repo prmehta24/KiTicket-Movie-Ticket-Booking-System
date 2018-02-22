@@ -135,6 +135,8 @@ public class ForgetPassword extends javax.swing.JFrame {
             brFP.close();
             frFP.close();
             fwFP.close();
+            ForgetPassword fp=new ForgetPassword();
+            fp.setVisible(false);
         }catch(Exception e){
                 
         }

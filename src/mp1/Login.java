@@ -154,6 +154,11 @@ public class Login extends javax.swing.JFrame {
         });
 
         jButton1.setText("Sign-up");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -208,12 +213,13 @@ public class Login extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
  
     private void ForgetPassActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ForgetPassActionPerformed
-        
+                    ForgetPassword fp=new ForgetPassword();
+                    fp.setVisible(true);
     }//GEN-LAST:event_ForgetPassActionPerformed
 
     private void SubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SubmitActionPerformed
                 try {
-                    
+                    Moives m = new Moives();
                     String strU="",strP="",tstr="",temp;
                     FileReader fr= new FileReader("Data.txt");
                     int i = 0;
@@ -230,8 +236,10 @@ public class Login extends javax.swing.JFrame {
                             if(temp.equals(strU)){
                                 System.out.println("Valid Username");
                                 temp=str[++i].trim();
-                                if(temp.equals(strP))
+                                if(temp.equals(strP)){
                                     System.out.println("Valid Password");
+                                    m.setVisible(true);
+                                }
                                 else
                                     System.out.println("Invalid Password");
                             }
@@ -255,12 +263,20 @@ public class Login extends javax.swing.JFrame {
                     }*/
                     fr.close();
                     //fw.close();
+                    //Login l= new Login();
+                    //dispose();
                 } catch (IOException ex) {
                     //Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
                 }
                 
         
     }//GEN-LAST:event_SubmitActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        SignUP su=new SignUP();
+        su.setVisible(true);
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -292,7 +308,8 @@ public class Login extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Login().setVisible(true);
+                Login l=new Login();
+                l.setVisible(true);
             }
         });
     }

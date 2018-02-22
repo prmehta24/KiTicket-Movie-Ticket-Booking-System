@@ -152,6 +152,8 @@ public class SignUP extends javax.swing.JFrame {
             }
             fwSU.write(" \r\n");
             fwSU.close();
+            SignUP su=new SignUP();
+            dispose();
         }catch(Exception e){
                 
         }

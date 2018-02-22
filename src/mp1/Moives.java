@@ -33,6 +33,7 @@ public class Moives extends javax.swing.JFrame {
         Nmovie = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         Mname0 = new javax.swing.JButton();
+        BackToL = new javax.swing.JButton();
 
         jButton1.setText("jButton1");
 
@@ -47,6 +48,18 @@ public class Moives extends javax.swing.JFrame {
         jLabel1.setText("Black Panther");
 
         Mname0.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mp1/images/BlackPanther.jpg"))); // NOI18N
+        Mname0.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Mname0ActionPerformed(evt);
+            }
+        });
+
+        BackToL.setText("Back");
+        BackToL.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BackToLActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -63,13 +76,16 @@ public class Moives extends javax.swing.JFrame {
                         .addComponent(Nmovie, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(150, 150, 150)
-                        .addComponent(jLabel1)))
+                        .addComponent(jLabel1))
+                    .addComponent(BackToL))
                 .addContainerGap(26, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(41, 41, 41)
+                .addGap(7, 7, 7)
+                .addComponent(BackToL)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel1)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -97,6 +113,17 @@ public class Moives extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void Mname0ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Mname0ActionPerformed
+        // TODO add your handling code here:
+        MovieInfo mi=new MovieInfo();
+        mi.setVisible(true);
+    }//GEN-LAST:event_Mname0ActionPerformed
+
+    private void BackToLActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackToLActionPerformed
+        // TODO add your handling code here:
+        dispose();
+    }//GEN-LAST:event_BackToLActionPerformed
 
     /**
      * @param args the command line arguments
@@ -128,12 +155,15 @@ public class Moives extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Moives().setVisible(true);
+                Moives ob=new Moives();
+                ob.setVisible(true);
+                ob.setResizable(false);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton BackToL;
     private javax.swing.JButton Mname0;
     private javax.swing.JButton Nmovie;
     private javax.swing.JButton Pmoive;
