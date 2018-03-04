@@ -35,8 +35,16 @@ String uPass= "password";
      try {
             Connection con;
       con = DriverManager.getConnection( host,uName,uPass);
-      Statement stmt = con.createStatement( );
-      String SQL = "SELECT * FROM Users";
+      Statement stmt = con.createStatement();
+      String SQL = "SELECT * FROM Data where Contact='parth123@gmail.com'";
+      ResultSet rs=stmt.executeQuery(SQL);
+      while(rs.next())
+      {
+      String id=rs.getString("Username");
+      String user=rs.getString("Contact");
+      String pswd=rs.getString("Password");
+      System.out.println("Email/PhoneNo: "+user+" Password: "+pswd);
+      }
         } catch (SQLException ex) {
             Logger.getLogger(DBTest.class.getName()).log(Level.SEVERE, null, ex);
         }

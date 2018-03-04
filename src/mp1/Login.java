@@ -4,11 +4,26 @@
  * and open the template in the editor.
  */
 package mp1;
-
-import javax.swing.JFrame;
-import java.io.*;
+import java.sql.ResultSet;
+import java.sql.Statement;
+import java.sql.Statement;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
+import javax.swing.JFrame;
+import java.awt.Dimension;
+//import java.io.*;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -210,28 +225,30 @@ public class Login extends javax.swing.JFrame {
         getAccessibleContext().setAccessibleDescription("Login Screen");
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
  
     private void ForgetPassActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ForgetPassActionPerformed
-                    ForgetPassword fp=new ForgetPassword();
+        dispose();            
+        ForgetPassword fp=new ForgetPassword();
                     fp.setVisible(true);
     }//GEN-LAST:event_ForgetPassActionPerformed
 
     private void SubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SubmitActionPerformed
-                try {
+                /*try {
                     Moives m = new Moives();
                     String strU="",strP="",tstr="",temp;
-                    FileReader fr= new FileReader("Data.txt");
+                    //FileReader fr= new FileReader("Data.txt");
                     int i = 0;
                     strU=Username.getText();
                     strP=Password.getText();
-                    while((i=fr.read())!= -1){
+                    /*while((i=fr.read())!= -1){
                         tstr+=(char)i;
                         i++;
-                    }
-                    int count=0;
-                    String str[]=tstr.split(" ",0);
-                    for(i=0;i<str.length;i++){
+                    */
+                    //int count=0;
+                    //String str[]=tstr.split(" ",0);
+                    /*for(i=0;i<str.length;i++){
                             temp=str[i].trim();
                             if(temp.equals(strU)){
                                 System.out.println("Valid Username");
@@ -261,19 +278,55 @@ public class Login extends javax.swing.JFrame {
                     else{
                         System.out.println("Unauthorized");
                     }*/
-                    fr.close();
+                    //fr.close();
                     //fw.close();
                     //Login l= new Login();
                     //dispose();
-                } catch (IOException ex) {
+                /*} catch (Exception ex) {
                     //Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
-                }
-                
+                }*/
+                String host = "jdbc:derby://localhost:1527/Users";
+        String strU=Username.getText();
+        String strP=Password.getText();
+
+String uName = "username";
+String uPass= "password";
+    int flag=0;
+     try {
+            Connection con;
+      con = DriverManager.getConnection( host,uName,uPass);
+      Statement stmt = con.createStatement();
+      String SQL = "SELECT * FROM Data ";
+      ResultSet rs=stmt.executeQuery(SQL);
+      while(rs.next())
+      {
+      String id=rs.getString("Username");
+      String user=rs.getString("Contact");
+      String pswd=rs.getString("Password");
+      //System.out.println("Email/PhoneNo: "+user+" Password: "+pswd);
+      if(strU.equals(id) && strP.equals(pswd)){
+          flag=1;
+          //System.out.println("Valid credentials");
+          dispose();
+          Movies m= new Movies();
+          m.setVisible(true);
+          break;
+      }
+      }
+      Login l= new Login();
+      if(flag==0){
+       //System.out.println("Invalid credentials");
+       JOptionPane.showMessageDialog(l,"Invalid Credentials");
+      }
+        } catch (SQLException ex) {
+            Logger.getLogger(DBTest.class.getName()).log(Level.SEVERE, null, ex);
+        }
         
     }//GEN-LAST:event_SubmitActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
+        dispose();
         SignUP su=new SignUP();
         su.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
@@ -310,6 +363,8 @@ public class Login extends javax.swing.JFrame {
             public void run() {
                 Login l=new Login();
                 l.setVisible(true);
+                l.setResizable(false);
+                l.setSize(new Dimension(517,454));
             }
         });
     }

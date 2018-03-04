@@ -5,6 +5,8 @@
  */
 package mp1;
 
+import java.awt.Dimension;
+
 /**
  *
  * @author prmehta24
@@ -173,6 +175,7 @@ public class Confirmation extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void ConfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ConfActionPerformed
@@ -181,8 +184,8 @@ public class Confirmation extends javax.swing.JFrame {
 
     private void BackToBTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackToBTActionPerformed
         // TODO add your handling code here:
-        BookTicket bt=new BookTicket();
         dispose();
+        new BookTicket().setVisible(true);
     }//GEN-LAST:event_BackToBTActionPerformed
 
     /**
@@ -215,7 +218,9 @@ public class Confirmation extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Confirmation().setVisible(true);
+                Confirmation c=new Confirmation();
+                c.setVisible(true);
+                c.setSize(new Dimension(517,454));
             }
         });
     }

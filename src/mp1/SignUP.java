@@ -4,8 +4,15 @@
  * and open the template in the editor.
  */
 package mp1;
-
+import java.awt.Dimension;
 import java.io.*;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -43,6 +50,9 @@ public class SignUP extends javax.swing.JFrame {
         SUEmailM = new javax.swing.JTextField();
         SUPass = new javax.swing.JPasswordField();
         SubmitSU = new javax.swing.JButton();
+        SUun = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
+        BackToL = new javax.swing.JButton();
 
         jScrollPane1.setViewportView(jEditorPane1);
 
@@ -85,7 +95,7 @@ public class SignUP extends javax.swing.JFrame {
         setTitle("Sign-Up");
         setName(""); // NOI18N
 
-        jLabel1.setText("Email or Mobile No.");
+        jLabel1.setText("Email");
 
         jLabel2.setText("Password");
 
@@ -93,6 +103,15 @@ public class SignUP extends javax.swing.JFrame {
         SubmitSU.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 SubmitSUActionPerformed(evt);
+            }
+        });
+
+        jLabel3.setText("Username");
+
+        BackToL.setText("Back");
+        BackToL.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BackToLActionPerformed(evt);
             }
         });
 
@@ -104,39 +123,49 @@ public class SignUP extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel1)
-                    .addComponent(jLabel2))
+                    .addComponent(jLabel2)
+                    .addComponent(jLabel3))
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(SubmitSU)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(SUEmailM, javax.swing.GroupLayout.DEFAULT_SIZE, 197, Short.MAX_VALUE)
-                        .addComponent(SUPass)))
-                .addContainerGap(85, Short.MAX_VALUE))
+                    .addComponent(SUEmailM, javax.swing.GroupLayout.DEFAULT_SIZE, 197, Short.MAX_VALUE)
+                    .addComponent(SUPass)
+                    .addComponent(SUun))
+                .addContainerGap(127, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(BackToL)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(36, 36, 36)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel1)
-                    .addComponent(SUEmailM, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(21, 21, 21)
+                .addComponent(BackToL)
+                .addGap(10, 10, 10)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(SUun, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel3))
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(SUPass, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(28, 28, 28)
+                    .addComponent(SUEmailM, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(SUPass, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2))
+                .addGap(18, 18, 18)
                 .addComponent(SubmitSU)
-                .addContainerGap(152, Short.MAX_VALUE))
+                .addContainerGap(130, Short.MAX_VALUE))
         );
 
         getAccessibleContext().setAccessibleName("");
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void SubmitSUActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SubmitSUActionPerformed
         // TODO add your handling code here:
-        String strSU0= SUEmailM.getText();
+        /*String strSU0= SUEmailM.getText();
         String strSU1=SUPass.getText();
         try{
             FileWriter fwSU= new FileWriter("Data.txt",true);
@@ -151,13 +180,65 @@ public class SignUP extends javax.swing.JFrame {
                 j++;
             }
             fwSU.write(" \r\n");
-            fwSU.close();
+            fwSU.close();            fwSU.write(" \r\n");
+
             SignUP su=new SignUP();
             dispose();
         }catch(Exception e){
                 
+        }*/
+        String host = "jdbc:derby://localhost:1527/Users";
+
+
+        String uName = "username";
+        String uPass= "password";
+        String strSU0= SUEmailM.getText();
+        String strSU1=SUPass.getText();
+        String strSUu=SUun.getText();
+    
+     try {
+            Connection con;
+      con = DriverManager.getConnection( host,uName,uPass);
+      Statement stmt = con.createStatement();
+      //String SQL = "SELECT * FROM Data";
+      
+      //Statement stmt = con.createStatement();
+        String SQL = "SELECT * FROM Data ";
+       
+            try {
+                 ResultSet rs=stmt.executeQuery(SQL);
+                while(rs.next())
+                {
+                    
+                }     } catch (SQLException ex) {
+                Logger.getLogger(SignUP.class.getName()).log(Level.SEVERE, null, ex);
+            }
+      String Cmd = "INSERT INTO Data (Username,Contact,Password) values ('"+strSUu+"','"+strSU0+"','"+strSU1+"')";
+      
+                try {
+                    stmt.executeUpdate(Cmd);
+                    //while(rs.next())
+                    //{
+                    /*String id=rs.getString("Username");
+                    String user=rs.getString("Contact");
+                    String pswd=rs.getString("Password");*/
+                    //System.out.println("Email/PhoneNo: "+user+" Password: "+pswd);
+                    
+                    //  }
+                } catch (SQLException ex) {
+                    Logger.getLogger(SignUP.class.getName()).log(Level.SEVERE, null, ex);
+                }
+        }catch(Exception e){
+                
         }
+        
     }//GEN-LAST:event_SubmitSUActionPerformed
+
+    private void BackToLActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackToLActionPerformed
+        // TODO add your handling code here:
+        dispose();
+        new Login().setVisible(true);
+    }//GEN-LAST:event_BackToLActionPerformed
 
     /**
      * @param args the command line arguments
@@ -189,14 +270,19 @@ public class SignUP extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new SignUP().setVisible(true);
+                SignUP su=new SignUP();
+                su.setVisible(true);
+                su.setResizable(false);
+                su.setSize(new Dimension(517,454));
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton BackToL;
     private javax.swing.JTextField SUEmailM;
     private javax.swing.JPasswordField SUPass;
+    private javax.swing.JTextField SUun;
     private javax.swing.JButton SubmitSU;
     private javax.swing.JDialog jDialog1;
     private javax.swing.JDialog jDialog2;
@@ -204,6 +290,7 @@ public class SignUP extends javax.swing.JFrame {
     private javax.swing.JEditorPane jEditorPane1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JPopupMenu jPopupMenu1;
     private javax.swing.JPopupMenu jPopupMenu2;
     private javax.swing.JPopupMenu jPopupMenu3;

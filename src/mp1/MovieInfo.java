@@ -5,6 +5,8 @@
  */
 package mp1;
 
+import java.awt.Dimension;
+
 /**
  *
  * @author iis
@@ -87,7 +89,7 @@ public class MovieInfo extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(195, 195, 195)
                         .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(195, 195, 195))
+                        .addGap(194, 194, 194))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
@@ -140,6 +142,7 @@ public class MovieInfo extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void BookMTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BookMTActionPerformed
@@ -151,6 +154,7 @@ public class MovieInfo extends javax.swing.JFrame {
     private void BackToMActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackToMActionPerformed
         // TODO add your handling code here:
         dispose();
+        new Movies().setVisible(true);
     }//GEN-LAST:event_BackToMActionPerformed
 
     /**
@@ -186,6 +190,7 @@ public class MovieInfo extends javax.swing.JFrame {
                 MovieInfo mi=new MovieInfo();
                 mi.setVisible(true);
                 mi.setResizable(false);
+                mi.setSize(new Dimension(517,454));
             }
         });
     }

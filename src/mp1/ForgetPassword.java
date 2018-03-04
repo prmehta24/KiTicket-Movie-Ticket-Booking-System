@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package mp1;
+import java.awt.Dimension;
 import java.io.*;
 import java.util.Scanner;
 
@@ -35,6 +36,7 @@ public class ForgetPassword extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         SubmitFP = new javax.swing.JButton();
         FPEmail = new javax.swing.JTextField();
+        BackToL = new javax.swing.JButton();
 
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);
@@ -60,6 +62,13 @@ public class ForgetPassword extends javax.swing.JFrame {
             }
         });
 
+        BackToL.setText("Back");
+        BackToL.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BackToLActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -73,11 +82,15 @@ public class ForgetPassword extends javax.swing.JFrame {
                         .addComponent(FPEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 246, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(SubmitFP))
                 .addContainerGap(31, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(BackToL)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(39, 39, 39)
+                .addComponent(BackToL)
+                .addGap(16, 16, 16)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(FPEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -86,10 +99,10 @@ public class ForgetPassword extends javax.swing.JFrame {
                 .addContainerGap(200, Short.MAX_VALUE))
         );
 
-        getAccessibleContext().setAccessibleName("Forget Password");
         getAccessibleContext().setAccessibleDescription("Forget Password");
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void SubmitFPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SubmitFPActionPerformed
@@ -146,6 +159,12 @@ public class ForgetPassword extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_FPEmailActionPerformed
 
+    private void BackToLActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackToLActionPerformed
+        // TODO add your handling code here:
+        dispose();
+        new Login().setVisible(true);
+    }//GEN-LAST:event_BackToLActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -176,12 +195,16 @@ public class ForgetPassword extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ForgetPassword().setVisible(true);
+                ForgetPassword fp= new ForgetPassword();
+                fp.setVisible(true);
+                fp.setResizable(false);
+                fp.setSize(new Dimension(517,454));
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton BackToL;
     private javax.swing.JTextField FPEmail;
     private javax.swing.JButton SubmitFP;
     private javax.swing.JLabel jLabel1;
