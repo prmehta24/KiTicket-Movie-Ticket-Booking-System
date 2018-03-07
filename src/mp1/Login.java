@@ -229,7 +229,7 @@ public class Login extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
  
     private void ForgetPassActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ForgetPassActionPerformed
-        dispose();            
+                   
         ForgetPassword fp=new ForgetPassword();
                     fp.setVisible(true);
     }//GEN-LAST:event_ForgetPassActionPerformed
@@ -292,6 +292,7 @@ public class Login extends javax.swing.JFrame {
 String uName = "username";
 String uPass= "password";
     int flag=0;
+    Login l= new Login();
      try {
             Connection con;
       con = DriverManager.getConnection( host,uName,uPass);
@@ -304,6 +305,7 @@ String uPass= "password";
       String user=rs.getString("Contact");
       String pswd=rs.getString("Password");
       //System.out.println("Email/PhoneNo: "+user+" Password: "+pswd);
+      
       if(strU.equals(id) && strP.equals(pswd)){
           flag=1;
           //System.out.println("Valid credentials");
@@ -312,8 +314,13 @@ String uPass= "password";
           m.setVisible(true);
           break;
       }
+      else if(strU.equals("") && strP.equals("")){
+          flag=1;
+          JOptionPane.showMessageDialog(l,"Please fill all fields");
+          break;
       }
-      Login l= new Login();
+      }
+      
       if(flag==0){
        //System.out.println("Invalid credentials");
        JOptionPane.showMessageDialog(l,"Invalid Credentials");
@@ -326,7 +333,7 @@ String uPass= "password";
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        dispose();
+    
         SignUP su=new SignUP();
         su.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
@@ -360,6 +367,7 @@ String uPass= "password";
         //</editor-fold>
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
+            @Override
             public void run() {
                 Login l=new Login();
                 l.setVisible(true);

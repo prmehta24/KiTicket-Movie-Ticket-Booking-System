@@ -6,7 +6,12 @@
 package mp1;
 import java.awt.Dimension;
 import java.io.*;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.Statement;
 import java.util.Scanner;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -107,16 +112,16 @@ public class ForgetPassword extends javax.swing.JFrame {
 
     private void SubmitFPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SubmitFPActionPerformed
         // TODO add your handling code here:
-        String strFP= FPEmail.getText();
-        String tstr1=""; 
+        
+       /* String tstr1=""; 
         try{
             FileWriter fwFP= new FileWriter("Data.txt",true);
             int i=0;
-            /*while(i != strFP.length()){
+            while(i != strFP.length()){
                 fwFP.write(strFP.charAt(i));
                 i++;
         }
-            fwFP.write("\r\n");*/
+            fwFP.write("\r\n");
             FileReader frFP= new FileReader("Data.txt");
             BufferedReader brFP=new BufferedReader(frFP);
                     int count1=0;
@@ -152,9 +157,41 @@ public class ForgetPassword extends javax.swing.JFrame {
             fp.setVisible(false);
         }catch(Exception e){
                 
-        }
+        }*/
+       String strFP= FPEmail.getText();
+       String host = "jdbc:derby://localhost:1527/Users";
+String uName = "username";
+String uPass= "password";
+    int flag = 0;
+    ForgetPassword f = new ForgetPassword();
+     try {
+            Connection con;
+      con = DriverManager.getConnection( host,uName,uPass);
+      Statement stmt = con.createStatement();
+      String SQL = "SELECT * FROM Data";
+      ResultSet rs=stmt.executeQuery(SQL);
+      while(rs.next())
+      {
+      String user=rs.getString("Contact");
+      if(strFP.equals(user)){
+          flag=1;
+         JOptionPane.showMessageDialog(f,"Email has been sent....");
+         dispose();
+         break;
+     }
+      else if(strFP.equals("")){
+          flag=1;
+          JOptionPane.showMessageDialog(f,"Please fill the field....");
+          break;
+      }
+    
     }//GEN-LAST:event_SubmitFPActionPerformed
-
+      if(flag==0){
+         JOptionPane.showMessageDialog(f,"Email is not registered!!!");
+     }
+     }catch(Exception e){}
+    }
+    
     private void FPEmailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FPEmailActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_FPEmailActionPerformed
@@ -162,7 +199,7 @@ public class ForgetPassword extends javax.swing.JFrame {
     private void BackToLActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackToLActionPerformed
         // TODO add your handling code here:
         dispose();
-        new Login().setVisible(true);
+        //new Login().setVisible(true);
     }//GEN-LAST:event_BackToLActionPerformed
 
     /**
