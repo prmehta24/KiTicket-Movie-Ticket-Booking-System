@@ -12,12 +12,69 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.Scanner;
 import javax.swing.JOptionPane;
+import java.util.Properties;
+import java.util.Scanner;
+import javax.mail.Message;
+import javax.mail.MessagingException;
+import javax.mail.PasswordAuthentication;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
 
 /**
  *
  * @author parth
  */
 public class ForgetPassword extends javax.swing.JFrame {
+    
+   
+    public void SendOTP(String user){
+        String User= user;
+        ForgetPassword f=new ForgetPassword();
+        Scanner sc = new Scanner(System.in);
+		final String username = "vectorparker0047@gmail.com"; // enter your mail id
+                System.out.print("Enter Admin Password : ");
+                String pwd=sc.nextLine();
+		final String password = pwd;// enter ur password
+
+		Properties props = new Properties();
+		props.put("mail.smtp.auth", "true");
+		props.put("mail.smtp.starttls.enable", "true");
+		props.put("mail.smtp.host", "smtp.gmail.com");
+		props.put("mail.smtp.port", "587");
+                props.put("mail.smtp.ssl.trust", "smtp.gmail.com");
+                props.put("mail.smtp.ssl.trust", "*");
+
+
+
+		Session session = Session.getInstance(props,
+		  new javax.mail.Authenticator() {
+                        @Override
+			protected PasswordAuthentication getPasswordAuthentication() {
+				return new PasswordAuthentication(username, password);
+			}
+		  });
+
+		try {
+
+			Message message = new MimeMessage(session);
+			message.setFrom(new InternetAddress("vectorparker0047@gmail.com")); // same email id
+			message.setRecipients(Message.RecipientType.TO,
+				InternetAddress.parse(User));// whome u have to send mails that person id
+			message.setSubject("MTBS");
+			message.setText("Dear User,"
+				+ "\n\n OTP is : 456!!!");
+
+			Transport.send(message);
+
+			JOptionPane.showMessageDialog(f,"Email has been sent....");
+
+		} catch (MessagingException e) {
+			throw new RuntimeException(e);
+		}
+        
+    }
 
     /**
      * Creates new form ForgetPassword
@@ -175,7 +232,8 @@ String uPass= "password";
       String user=rs.getString("Contact");
       if(strFP.equals(user)){
           flag=1;
-         JOptionPane.showMessageDialog(f,"Email has been sent....");
+          SendOTP(user);
+         //JOptionPane.showMessageDialog(f,"Email has been sent....");
          dispose();
          break;
      }

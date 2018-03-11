@@ -129,7 +129,6 @@ public class Movies extends javax.swing.JFrame {
     private void BackToLActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackToLActionPerformed
         // TODO add your handling code here:
         dispose();
-        new Login().setVisible(true);
     }//GEN-LAST:event_BackToLActionPerformed
 
     /**

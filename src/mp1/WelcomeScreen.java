@@ -28,58 +28,37 @@ public class WelcomeScreen extends javax.swing.JFrame {
     private void initComponents() {
 
         jOptionPane1 = new javax.swing.JOptionPane();
-        WCscreen = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
         WCBT = new javax.swing.JButton();
+        WCLable = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Welcome");
+        setMinimumSize(new java.awt.Dimension(660, 440));
+        setPreferredSize(new java.awt.Dimension(650, 413));
+        getContentPane().setLayout(null);
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mp1/images/MTBS.jpg"))); // NOI18N
-
-        WCBT.setText("Book Tickets!!!");
+        WCBT.setText("Book");
         WCBT.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 WCBTActionPerformed(evt);
             }
         });
+        getContentPane().add(WCBT);
+        WCBT.setBounds(320, 280, 73, 23);
 
-        javax.swing.GroupLayout WCscreenLayout = new javax.swing.GroupLayout(WCscreen);
-        WCscreen.setLayout(WCscreenLayout);
-        WCscreenLayout.setHorizontalGroup(
-            WCscreenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(WCscreenLayout.createSequentialGroup()
-                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(WCBT))
-        );
-        WCscreenLayout.setVerticalGroup(
-            WCscreenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, WCscreenLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(WCBT)
-                .addGap(67, 67, 67))
-            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
+        WCLable.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mp1/images/MTBS.jpg"))); // NOI18N
+        WCLable.setText("Book");
+        getContentPane().add(WCLable);
+        WCLable.setBounds(0, 0, 650, 413);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(WCscreen, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(WCscreen, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-
-        pack();
+        setSize(new java.awt.Dimension(664, 452));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void WCBTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_WCBTActionPerformed
         // TODO add your handling code here:
         dispose();
-        Login l = new Login();
+        Login l= new Login();
         l.setVisible(true);
     }//GEN-LAST:event_WCBTActionPerformed
 
@@ -120,8 +99,7 @@ public class WelcomeScreen extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton WCBT;
-    private javax.swing.JPanel WCscreen;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel WCLable;
     private javax.swing.JOptionPane jOptionPane1;
     // End of variables declaration//GEN-END:variables
 }

@@ -154,7 +154,6 @@ public class MovieInfo extends javax.swing.JFrame {
     private void BackToMActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackToMActionPerformed
         // TODO add your handling code here:
         dispose();
-        new Movies().setVisible(true);
     }//GEN-LAST:event_BackToMActionPerformed
 
     /**

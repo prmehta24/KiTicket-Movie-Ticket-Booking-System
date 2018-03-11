@@ -13,6 +13,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -189,7 +190,7 @@ public class SignUP extends javax.swing.JFrame {
         }*/
         String host = "jdbc:derby://localhost:1527/Users";
 
-
+        SignUP su=new SignUP();
         String uName = "username";
         String uPass= "password";
         String strSU0= SUEmailM.getText();
@@ -212,9 +213,11 @@ public class SignUP extends javax.swing.JFrame {
                     
                 }     } catch (SQLException ex) {
                 Logger.getLogger(SignUP.class.getName()).log(Level.SEVERE, null, ex);
+                
             }
       String Cmd = "INSERT INTO Data (Username,Contact,Password) values ('"+strSUu+"','"+strSU0+"','"+strSU1+"')";
-      
+      JOptionPane.showMessageDialog(su,"Success...");
+      dispose();
                 try {
                     stmt.executeUpdate(Cmd);
                     //while(rs.next())

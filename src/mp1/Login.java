@@ -285,14 +285,20 @@ public class Login extends javax.swing.JFrame {
                 /*} catch (Exception ex) {
                     //Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
                 }*/
-                String host = "jdbc:derby://localhost:1527/Users";
-        String strU=Username.getText();
+                  Login l= new Login();
+                String strU=Username.getText();
         String strP=Password.getText();
+                if(strU.equals("") || strP.equals("")){
+                    JOptionPane.showMessageDialog(l,"Please fill all fields");
+                }
+                else{
+                        String host = "jdbc:derby://localhost:1527/Users";
+        
 
 String uName = "username";
 String uPass= "password";
     int flag=0;
-    Login l= new Login();
+  
      try {
             Connection con;
       con = DriverManager.getConnection( host,uName,uPass);
@@ -309,14 +315,9 @@ String uPass= "password";
       if(strU.equals(id) && strP.equals(pswd)){
           flag=1;
           //System.out.println("Valid credentials");
-          dispose();
+          //dispose();
           Movies m= new Movies();
           m.setVisible(true);
-          break;
-      }
-      else if(strU.equals("") && strP.equals("")){
-          flag=1;
-          JOptionPane.showMessageDialog(l,"Please fill all fields");
           break;
       }
       }
@@ -328,7 +329,7 @@ String uPass= "password";
         } catch (SQLException ex) {
             Logger.getLogger(DBTest.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+                        }
     }//GEN-LAST:event_SubmitActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
