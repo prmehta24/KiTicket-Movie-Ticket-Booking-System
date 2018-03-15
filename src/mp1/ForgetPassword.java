@@ -21,6 +21,7 @@ import javax.mail.Session;
 import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
+import java.util.Random;
 
 /**
  *
@@ -28,9 +29,12 @@ import javax.mail.internet.MimeMessage;
  */
 public class ForgetPassword extends javax.swing.JFrame {
     
-   
+   static boolean OTP_flag=false;
     public void SendOTP(String user){
+        int otp;
         String User= user;
+        Random ran = new Random();
+        otp=ran.nextInt(100);
         ForgetPassword f=new ForgetPassword();
         Scanner sc = new Scanner(System.in);
 		final String username = "vectorparker0047@gmail.com"; // enter your mail id
@@ -64,11 +68,31 @@ public class ForgetPassword extends javax.swing.JFrame {
 				InternetAddress.parse(User));// whome u have to send mails that person id
 			message.setSubject("MTBS");
 			message.setText("Dear User,"
-				+ "\n\n OTP is : 456!!!");
-
+				+ "\n\n OTP is : " +otp+ " !!!");
+                        System.out.println("Otp : "+otp);
+                        
 			Transport.send(message);
 
-			JOptionPane.showMessageDialog(f,"Email has been sent....");
+			String res= JOptionPane.showInputDialog(f,"Email has been sent.\nEnter OTP....");
+                        int i=Integer.parseInt(res);
+                        /*SubmitFPEmail.setVisible(false);
+                        FPLOtp.setVisible(true);
+                        FPOtp.setVisible(true);
+                        SubmitFPOtp.setVisible(true);*/
+                       if(i==otp){
+                           System.out.println("Done man!!");
+                
+                  f.FPCP.setVisible(true);
+                f.FPNP.setVisible(true);
+                f.FPCPassword.setVisible(true);
+                f.FPNPassword.setVisible(true);
+                f.SubmitFPPassword.setVisible(true);  
+                System.out.println("true");
+                
+                       }
+                       else{
+                           System.out.println("Wrong OTP!!!!");
+                       }
 
 		} catch (MessagingException e) {
 			throw new RuntimeException(e);
@@ -95,10 +119,15 @@ public class ForgetPassword extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTextArea1 = new javax.swing.JTextArea();
         jTextField1 = new javax.swing.JTextField();
-        jLabel1 = new javax.swing.JLabel();
-        SubmitFP = new javax.swing.JButton();
+        FPLEmail = new javax.swing.JLabel();
+        SubmitFPEmail = new javax.swing.JButton();
         FPEmail = new javax.swing.JTextField();
         BackToL = new javax.swing.JButton();
+        FPNPassword = new javax.swing.JLabel();
+        FPNP = new javax.swing.JTextField();
+        FPCPassword = new javax.swing.JLabel();
+        FPCP = new javax.swing.JTextField();
+        SubmitFPPassword = new javax.swing.JButton();
 
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);
@@ -109,12 +138,12 @@ public class ForgetPassword extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Forget Password");
 
-        jLabel1.setText("Enter recovery E-mail");
+        FPLEmail.setText("Enter recovery E-mail : ");
 
-        SubmitFP.setText("Submit");
-        SubmitFP.addActionListener(new java.awt.event.ActionListener() {
+        SubmitFPEmail.setText("Submit");
+        SubmitFPEmail.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                SubmitFPActionPerformed(evt);
+                SubmitFPEmailActionPerformed(evt);
             }
         });
 
@@ -131,22 +160,52 @@ public class ForgetPassword extends javax.swing.JFrame {
             }
         });
 
+        FPNPassword.setText("Enter New Password : ");
+
+        FPNP.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                FPNPActionPerformed(evt);
+            }
+        });
+
+        FPCPassword.setText("Confirm Password : ");
+
+        FPCP.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                FPCPActionPerformed(evt);
+            }
+        });
+
+        SubmitFPPassword.setText("Submit");
+        SubmitFPPassword.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SubmitFPPasswordActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(FPEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 246, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(SubmitFP))
-                .addContainerGap(31, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
                 .addComponent(BackToL)
                 .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(SubmitFPEmail)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(FPLEmail)
+                            .addComponent(FPNPassword)
+                            .addComponent(FPCPassword))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(FPEmail, javax.swing.GroupLayout.DEFAULT_SIZE, 246, Short.MAX_VALUE)
+                            .addComponent(FPNP)
+                            .addComponent(FPCP)))
+                    .addComponent(SubmitFPPassword))
+                .addContainerGap(21, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -154,11 +213,21 @@ public class ForgetPassword extends javax.swing.JFrame {
                 .addComponent(BackToL)
                 .addGap(16, 16, 16)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
+                    .addComponent(FPLEmail)
                     .addComponent(FPEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(SubmitFP)
-                .addContainerGap(200, Short.MAX_VALUE))
+                .addComponent(SubmitFPEmail)
+                .addGap(79, 79, 79)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(FPNPassword)
+                    .addComponent(FPNP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(FPCPassword)
+                    .addComponent(FPCP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(SubmitFPPassword)
+                .addContainerGap(34, Short.MAX_VALUE))
         );
 
         getAccessibleContext().setAccessibleDescription("Forget Password");
@@ -167,7 +236,7 @@ public class ForgetPassword extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void SubmitFPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SubmitFPActionPerformed
+    private void SubmitFPEmailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SubmitFPEmailActionPerformed
         // TODO add your handling code here:
         
        /* String tstr1=""; 
@@ -220,6 +289,7 @@ public class ForgetPassword extends javax.swing.JFrame {
 String uName = "username";
 String uPass= "password";
     int flag = 0;
+    
     ForgetPassword f = new ForgetPassword();
      try {
             Connection con;
@@ -234,7 +304,8 @@ String uPass= "password";
           flag=1;
           SendOTP(user);
          //JOptionPane.showMessageDialog(f,"Email has been sent....");
-         dispose();
+         //dispose();
+         OPT_flag=true;
          break;
      }
       else if(strFP.equals("")){
@@ -243,7 +314,7 @@ String uPass= "password";
           break;
       }
     
-    }//GEN-LAST:event_SubmitFPActionPerformed
+    }//GEN-LAST:event_SubmitFPEmailActionPerformed
       if(flag==0){
          JOptionPane.showMessageDialog(f,"Email is not registered!!!");
      }
@@ -259,6 +330,19 @@ String uPass= "password";
         dispose();
         //new Login().setVisible(true);
     }//GEN-LAST:event_BackToLActionPerformed
+
+    private void FPNPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FPNPActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_FPNPActionPerformed
+
+    private void FPCPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FPCPActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_FPCPActionPerformed
+
+    private void SubmitFPPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SubmitFPPasswordActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_SubmitFPPasswordActionPerformed
 
     /**
      * @param args the command line arguments
@@ -290,19 +374,31 @@ String uPass= "password";
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
+                
                 ForgetPassword fp= new ForgetPassword();
                 fp.setVisible(true);
                 fp.setResizable(false);
                 fp.setSize(new Dimension(517,454));
+                fp.FPCP.setVisible(false);
+                fp.FPNP.setVisible(false);
+                fp.FPCPassword.setVisible(false);
+                fp.FPNPassword.setVisible(false);
+                fp.SubmitFPPassword.setVisible(false);
+                
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BackToL;
+    private javax.swing.JTextField FPCP;
+    private javax.swing.JLabel FPCPassword;
     private javax.swing.JTextField FPEmail;
-    private javax.swing.JButton SubmitFP;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel FPLEmail;
+    private javax.swing.JTextField FPNP;
+    private javax.swing.JLabel FPNPassword;
+    private javax.swing.JButton SubmitFPEmail;
+    private javax.swing.JButton SubmitFPPassword;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextArea jTextArea1;
     private javax.swing.JTextField jTextField1;
