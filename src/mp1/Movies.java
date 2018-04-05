@@ -35,7 +35,7 @@ public class Movies extends javax.swing.JFrame {
         try {
             Connection con;
       con = DriverManager.getConnection( host,uName,uPass);
-      Statement stmt = con.createStatement();
+      Statement stmt = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
       //String SQL = "SELECT * FROM Data";
       
       //Statement stmt = con.createStatement();
@@ -55,7 +55,8 @@ public class Movies extends javax.swing.JFrame {
             }
       
                 
-        }catch(Exception e){
+        }
+        catch(SQLException e){
                 
         }
         
@@ -199,6 +200,12 @@ public class Movies extends javax.swing.JFrame {
                 Mname=rs.getString("name");
                 Maddress=rs.getString("path");
                 System.out.println(Mname+" "+Maddress);
+                 MName.setText(Mname);
+                  Mimg.setIcon(new javax.swing.ImageIcon(getClass().getResource(Maddress)));
+            }
+            else
+            {
+                System.out.println("End of Database.");
             }
         } catch (SQLException ex) {
             Logger.getLogger(Movies.class.getName()).log(Level.SEVERE, null, ex);
@@ -212,11 +219,18 @@ public class Movies extends javax.swing.JFrame {
     private void PmoiveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PmoiveActionPerformed
         try {
             // TODO add your handling code here:
-            if(rs.next())
+              if(rs.previous())
             {
                 
                 Mname=rs.getString("name");
                 Maddress=rs.getString("path");
+                System.out.println(Mname+" "+Maddress);
+                 MName.setText(Mname);
+                  Mimg.setIcon(new javax.swing.ImageIcon(getClass().getResource(Maddress)));
+            }
+            else
+            {
+                System.out.println("End of Database.");
             }
         } catch (SQLException ex) {
             Logger.getLogger(Movies.class.getName()).log(Level.SEVERE, null, ex);
