@@ -14,13 +14,27 @@ import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import java.util.Scanner;
+import java.math.BigInteger;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 
 /**
  *
  * @author parth
  */
 public class SignUP extends javax.swing.JFrame {
-
+     String md5(String str){
+        String name= str;
+        try{
+            MessageDigest md = MessageDigest.getInstance("MD5");
+            md.update(name.getBytes(),0,name.length());
+             name= new BigInteger(1,md.digest()).toString(16);
+        }catch(NoSuchAlgorithmException e){
+            e.printStackTrace();
+        }
+        return name;
+}
     /**
      * Creates new form SignUP
      */
@@ -215,7 +229,7 @@ public class SignUP extends javax.swing.JFrame {
                 Logger.getLogger(SignUP.class.getName()).log(Level.SEVERE, null, ex);
                 
             }
-      String Cmd = "INSERT INTO Data (Username,Contact,Password) values ('"+strSUu+"','"+strSU0+"','"+strSU1+"')";
+      String Cmd = "INSERT INTO Data (Username,Contact,Password) values ('"+strSUu+"','"+strSU0+"','"+md5(strSU1)+"')";
       JOptionPane.showMessageDialog(su,"Success...");
       dispose();
                 try {

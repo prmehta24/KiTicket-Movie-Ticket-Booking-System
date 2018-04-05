@@ -15,6 +15,9 @@ import java.util.logging.Logger;
 
 import javax.swing.JFrame;
 import java.awt.Dimension;
+import java.math.BigInteger;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 //import java.io.*;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -31,7 +34,17 @@ import javax.swing.JOptionPane;
  */
 public class Login extends javax.swing.JFrame {
          
-            
+             String md5(String str){
+        String name= str;
+        try{
+            MessageDigest md = MessageDigest.getInstance("MD5");
+            md.update(name.getBytes(),0,name.length());
+             name= new BigInteger(1,md.digest()).toString(16);
+        }catch(NoSuchAlgorithmException e){
+            e.printStackTrace();
+        }
+        return name;
+}
     /**
      * Creates new form Login
      */
@@ -288,13 +301,13 @@ public class Login extends javax.swing.JFrame {
                   Login l= new Login();
                 String strU=Username.getText();
         String strP=Password.getText();
+        
                 if(strU.equals("") || strP.equals("")){
                     JOptionPane.showMessageDialog(l,"Please fill all fields");
                 }
                 else{
                         String host = "jdbc:derby://localhost:1527/Users";
-        
-
+       strP=md5(strP);
 String uName = "username";
 String uPass= "password";
     int flag=0;

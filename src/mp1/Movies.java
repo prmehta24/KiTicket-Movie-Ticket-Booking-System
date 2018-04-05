@@ -6,17 +6,59 @@
 package mp1;
 
 import java.awt.Dimension;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /**
  *
  * @author parth
  */
 public class Movies extends javax.swing.JFrame {
+    ResultSet rs;
 
+    String Mname,Maddress;
     /**
      * Creates new form Movies
      */
     public Movies() {
+        String host = "jdbc:derby://localhost:1527/Users";
+
+        
+        String uName = "username";
+        String uPass= "password";
+        try {
+            Connection con;
+      con = DriverManager.getConnection( host,uName,uPass);
+      Statement stmt = con.createStatement();
+      //String SQL = "SELECT * FROM Data";
+      
+      //Statement stmt = con.createStatement();
+        String SQL = "SELECT * FROM MovieNames ";
+       
+            try {
+                 rs=stmt.executeQuery(SQL);
+                rs.next();
+                
+                   Mname=rs.getString("name");
+                   Maddress=rs.getString("path");
+                    
+            } 
+            catch (SQLException ex) {
+                Logger.getLogger(SignUP.class.getName()).log(Level.SEVERE, null, ex);
+                
+            }
+      
+                
+        }catch(Exception e){
+                
+        }
+        
         initComponents();
     }
 
@@ -30,11 +72,12 @@ public class Movies extends javax.swing.JFrame {
     private void initComponents() {
 
         jButton1 = new javax.swing.JButton();
+        jSeparator1 = new javax.swing.JSeparator();
         jPanel1 = new javax.swing.JPanel();
         Pmoive = new javax.swing.JButton();
         Nmovie = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
-        Mname0 = new javax.swing.JButton();
+        MName = new javax.swing.JLabel();
+        Mimg = new javax.swing.JButton();
         BackToL = new javax.swing.JButton();
 
         jButton1.setText("jButton1");
@@ -43,17 +86,32 @@ public class Movies extends javax.swing.JFrame {
         setTitle("MovieScreen");
 
         Pmoive.setText("Previous");
+        Pmoive.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                PmoiveActionPerformed(evt);
+            }
+        });
 
         Nmovie.setText("Next");
-
-        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 51, 0));
-        jLabel1.setText("Black Panther");
-
-        Mname0.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mp1/images/BlackPanther.jpg"))); // NOI18N
-        Mname0.addActionListener(new java.awt.event.ActionListener() {
+        Nmovie.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Mname0ActionPerformed(evt);
+                NmovieActionPerformed(evt);
+            }
+        });
+
+        MName.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        MName.setForeground(new java.awt.Color(255, 51, 0));
+        MName.setText(Mname);
+        MName.addContainerListener(new java.awt.event.ContainerAdapter() {
+            public void componentAdded(java.awt.event.ContainerEvent evt) {
+                MNameComponentAdded(evt);
+            }
+        });
+
+        Mimg.setIcon(new javax.swing.ImageIcon(getClass().getResource(Maddress)));
+        Mimg.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MimgActionPerformed(evt);
             }
         });
 
@@ -74,12 +132,12 @@ public class Movies extends javax.swing.JFrame {
                         .addGap(43, 43, 43)
                         .addComponent(Pmoive)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(Mname0)
+                        .addComponent(Mimg)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(Nmovie, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(150, 150, 150)
-                        .addComponent(jLabel1))
+                        .addComponent(MName))
                     .addComponent(BackToL))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -89,11 +147,11 @@ public class Movies extends javax.swing.JFrame {
                 .addGap(7, 7, 7)
                 .addComponent(BackToL)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel1)
+                .addComponent(MName)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(18, 18, 18)
-                        .addComponent(Mname0))
+                        .addComponent(Mimg))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(133, 133, 133)
                         .addComponent(Pmoive))
@@ -121,16 +179,49 @@ public class Movies extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void Mname0ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Mname0ActionPerformed
+    private void MimgActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MimgActionPerformed
         // TODO add your handling code here:
         MovieInfo mi=new MovieInfo();
         mi.setVisible(true);
-    }//GEN-LAST:event_Mname0ActionPerformed
+    }//GEN-LAST:event_MimgActionPerformed
 
     private void BackToLActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackToLActionPerformed
         // TODO add your handling code here:
         dispose();
     }//GEN-LAST:event_BackToLActionPerformed
+
+    private void NmovieActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NmovieActionPerformed
+        try {
+            // TODO add your handling code here:
+            if(rs.next())
+            {
+                
+                Mname=rs.getString("name");
+                Maddress=rs.getString("path");
+                System.out.println(Mname+" "+Maddress);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Movies.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_NmovieActionPerformed
+
+    private void MNameComponentAdded(java.awt.event.ContainerEvent evt) {//GEN-FIRST:event_MNameComponentAdded
+        // TODO add your handling code here:
+    }//GEN-LAST:event_MNameComponentAdded
+
+    private void PmoiveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PmoiveActionPerformed
+        try {
+            // TODO add your handling code here:
+            if(rs.next())
+            {
+                
+                Mname=rs.getString("name");
+                Maddress=rs.getString("path");
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Movies.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_PmoiveActionPerformed
 
     /**
      * @param args the command line arguments
@@ -173,11 +264,12 @@ public class Movies extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BackToL;
-    private javax.swing.JButton Mname0;
+    private javax.swing.JLabel MName;
+    private javax.swing.JButton Mimg;
     private javax.swing.JButton Nmovie;
     private javax.swing.JButton Pmoive;
     private javax.swing.JButton jButton1;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JSeparator jSeparator1;
     // End of variables declaration//GEN-END:variables
 }
