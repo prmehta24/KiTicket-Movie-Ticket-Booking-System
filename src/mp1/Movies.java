@@ -22,7 +22,7 @@ import javax.swing.JOptionPane;
 public class Movies extends javax.swing.JFrame {
     ResultSet rs;
 
-    String Mname,Maddress;
+    public static String Mname,Maddress;
     /**
      * Creates new form Movies
      */

@@ -6,17 +6,65 @@
 package mp1;
 
 import java.awt.Dimension;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import static mp1.Movies.Maddress;
+import static mp1.Movies.Mname;
 
 /**
  *
  * @author iis
  */
 public class MovieInfo extends javax.swing.JFrame {
-
+public String Mcast,Mdescription;
     /**
      * Creates new form MovieInfo
      */
     public MovieInfo() {
+        String host = "jdbc:derby://localhost:1527/Users";
+
+        
+        String uName = "username";
+        String uPass= "password";
+        try {
+            Connection con;
+      con = DriverManager.getConnection( host,uName,uPass);
+      Statement stmt = con.createStatement();
+      //String SQL = "SELECT * FROM Data";
+      
+      //Statement stmt = con.createStatement();
+      System.out.println(Mname);
+        String SQL = "SELECT * FROM MovieNames WHERE Name = '"+Mname+"'";
+       
+            try {
+                 ResultSet rs;
+                rs = stmt.executeQuery(SQL);
+                rs.next();
+                
+                  // Mname=rs.getString("name");
+                   //Maddress=rs.getString("path");
+                   System.out.println(Maddress);
+                   Mdescription=rs.getString("description");
+                   System.out.println(Mdescription);
+                   Mcast=rs.getString("Mcast");
+                    System.out.println(Mcast);
+                    
+            } 
+            catch (SQLException ex) {
+                Logger.getLogger(SignUP.class.getName()).log(Level.SEVERE, null, ex);
+                
+            }
+      
+                
+        }
+        catch(SQLException e){
+                
+        }
         initComponents();
     }
 
@@ -42,7 +90,7 @@ public class MovieInfo extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mp1/images/BlackPanther.jpg"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource(Maddress)));
 
         jLabel2.setText("  Description:");
 
@@ -50,7 +98,7 @@ public class MovieInfo extends javax.swing.JFrame {
         jTextArea1.setFont(new java.awt.Font("Monospaced", 0, 12)); // NOI18N
         jTextArea1.setLineWrap(true);
         jTextArea1.setRows(5);
-        jTextArea1.setText("After the death of his father, T'Challa returns home to the African nation of Wakanda to take his rightful place as king. When a powerful enemy suddenly reappears, T'Challa's mettle as king -- and as Black Panther -- gets tested when he's drawn into a conflict that puts the fate of Wakanda and the entire world at risk. Faced with treachery and danger, the young king must rally his allies and release the full power of Black Panther to defeat his foes and secure the safety of his people.");
+        jTextArea1.setText(Mdescription);
         jTextArea1.setWrapStyleWord(true);
         jScrollPane1.setViewportView(jTextArea1);
 
@@ -59,12 +107,12 @@ public class MovieInfo extends javax.swing.JFrame {
         jTextArea2.setColumns(20);
         jTextArea2.setLineWrap(true);
         jTextArea2.setRows(5);
-        jTextArea2.setText("Director : Ryan Coogler\nWriters : Ryan Coogler, Joe Robert Cole\nStars: Chadwick Boseman, Michael B. Jordan, Lupita Nyong'o ");
+        jTextArea2.setText(Mcast);
         jTextArea2.setWrapStyleWord(true);
         jScrollPane2.setViewportView(jTextArea2);
 
         jLabel4.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
-        jLabel4.setText("Black Panther");
+        jLabel4.setText(Mname);
 
         BackToM.setText("Back");
         BackToM.addActionListener(new java.awt.event.ActionListener() {
@@ -104,9 +152,9 @@ public class MovieInfo extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(18, 18, 18)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 392, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 392, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(0, 0, Short.MAX_VALUE))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(142, 142, 142)
@@ -132,9 +180,12 @@ public class MovieInfo extends javax.swing.JFrame {
                 .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(12, 12, 12)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(79, 79, 79))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3))
