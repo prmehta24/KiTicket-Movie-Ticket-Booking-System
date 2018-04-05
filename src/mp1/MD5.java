@@ -16,6 +16,7 @@ import java.security.NoSuchAlgorithmException;
 public class MD5 {
     public static void main(String args[]){
         Scanner sc = new Scanner(System.in);
+       
         System.out.print("Enter the password : ");
         String name= sc.nextLine();
         try{

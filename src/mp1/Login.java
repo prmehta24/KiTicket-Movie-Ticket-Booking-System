@@ -301,10 +301,14 @@ public class Login extends javax.swing.JFrame {
                   Login l= new Login();
                 String strU=Username.getText();
         String strP=Password.getText();
-        
+        strP=md5(strP);
                 if(strU.equals("") || strP.equals("")){
                     JOptionPane.showMessageDialog(l,"Please fill all fields");
                 }
+                else if(strU.equals("vectorparker0047@gmail.com") && strP.equals("159084d546a447917fa9b79826c69677")){
+                    Admin ad=new Admin();
+                    ad.setVisible(true);
+    }
                 else{
                         String host = "jdbc:derby://localhost:1527/Users";
        strP=md5(strP);
