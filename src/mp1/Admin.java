@@ -38,11 +38,13 @@ public class Admin extends javax.swing.JFrame {
     private void initComponents() {
 
         jButton1 = new javax.swing.JButton();
+        buttonGroup1 = new javax.swing.ButtonGroup();
         AdL = new javax.swing.JLabel();
         BaM = new javax.swing.JRadioButton();
         AaM = new javax.swing.JRadioButton();
         RaM = new javax.swing.JRadioButton();
         AdSubmitB = new javax.swing.JButton();
+        EaM = new javax.swing.JRadioButton();
 
         jButton1.setText("jButton1");
 
@@ -53,10 +55,13 @@ public class Admin extends javax.swing.JFrame {
         AdL.setForeground(new java.awt.Color(255, 0, 0));
         AdL.setText("Hello Admin, What would you like to do?");
 
+        buttonGroup1.add(BaM);
         BaM.setText("Book a Movie");
 
+        buttonGroup1.add(AaM);
         AaM.setText("Add a Movie");
 
+        buttonGroup1.add(RaM);
         RaM.setText("Remove a Movie");
         RaM.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -71,6 +76,14 @@ public class Admin extends javax.swing.JFrame {
             }
         });
 
+        buttonGroup1.add(EaM);
+        EaM.setText("Edit a Movie");
+        EaM.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                EaMActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -78,6 +91,7 @@ public class Admin extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(EaM)
                     .addComponent(RaM)
                     .addComponent(AaM)
                     .addComponent(BaM)
@@ -96,9 +110,11 @@ public class Admin extends javax.swing.JFrame {
                 .addComponent(AaM)
                 .addGap(18, 18, 18)
                 .addComponent(RaM)
-                .addGap(29, 29, 29)
+                .addGap(11, 11, 11)
+                .addComponent(EaM)
+                .addGap(18, 18, 18)
                 .addComponent(AdSubmitB)
-                .addContainerGap(82, Short.MAX_VALUE))
+                .addContainerGap(59, Short.MAX_VALUE))
         );
 
         pack();
@@ -170,10 +186,80 @@ public class Admin extends javax.swing.JFrame {
                 
         }
         }
+        else if(RaM.isSelected()){
+            try {
+                String host = "jdbc:derby://localhost:1527/Users";
+                String uName = "username";
+                String uPass= "password";
+                Admin ad=new Admin();
+                String RmName= JOptionPane.showInputDialog(ad,"Enter a movie name is to be removed");
+                Connection con;
+                con = DriverManager.getConnection( host,uName,uPass);
+                Statement stmt = con.createStatement();
+                String SQL = "SELECT * FROM MOVIENAMES ";
+                try {
+                    ResultSet rs=stmt.executeQuery(SQL);
+                    while(rs.next()){}
+                }catch(SQLException ex){
+                    Logger.getLogger(SignUP.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                String cmd= "DELETE FROM MOVIENAMES WHERE NAME='"+RmName+"'";
+                try {
+                    stmt.executeUpdate(cmd);
+                } catch (SQLException ex) {
+                    Logger.getLogger(SignUP.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }catch(SQLException ex){
+                Logger.getLogger(Admin.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        else if(EaM.isSelected()){
+            try {
+                String host = "jdbc:derby://localhost:1527/Users";
+                String uName = "username";
+                String uPass= "password";
+                Admin ad=new Admin();
+                JTextField movie=new JTextField();
+            JTextField path=new JTextField();
+            JTextField description=new JTextField();
+            JTextField mcast=new JTextField();
+            String EmName= JOptionPane.showInputDialog(ad,"Enter a movie name is to be Edited");
+            Object[] fields={"Movie Name : ",movie,"Path : ",path,"Movie Description : ",description,"Movie Cast : ",mcast};
+        JOptionPane.showConfirmDialog(ad,fields,"Edit a Movie Details",JOptionPane.OK_CANCEL_OPTION);
+        String Mname=movie.getText();
+        String Mpath=path.getText();
+        String Mdescription=description.getText();
+        String Mmcast=mcast.getText();
+                
+                Connection con;
+                con = DriverManager.getConnection( host,uName,uPass);
+                Statement stmt = con.createStatement();
+                String SQL = "SELECT * FROM MOVIENAMES ";
+                try {
+                    ResultSet rs=stmt.executeQuery(SQL);
+                    while(rs.next()){}
+                }catch(SQLException ex){
+                    Logger.getLogger(SignUP.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                String cmd= "UPDATE MOVIENAMES SET NAME='"+Mname+"', PATH='"+Mpath+"', DESCRIPTION='"+Mdescription+"',MCAST='"+Mmcast+"' WHERE NAME='"+EmName+"'";
+                try {
+                    stmt.executeUpdate(cmd);
+                } catch (SQLException ex) {
+                    Logger.getLogger(SignUP.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }catch(SQLException ex){
+                Logger.getLogger(Admin.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
         else{
-            
+            Admin ad= new Admin();
+            JOptionPane.showConfirmDialog(ad,"Please select atleast one option","",JOptionPane.DEFAULT_OPTION,JOptionPane.PLAIN_MESSAGE);
         }
     }//GEN-LAST:event_AdSubmitBActionPerformed
+
+    private void EaMActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EaMActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_EaMActionPerformed
 
     /**
      * @param args the command line arguments
@@ -215,7 +301,9 @@ public class Admin extends javax.swing.JFrame {
     private javax.swing.JLabel AdL;
     private javax.swing.JButton AdSubmitB;
     private javax.swing.JRadioButton BaM;
+    private javax.swing.JRadioButton EaM;
     private javax.swing.JRadioButton RaM;
+    private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JButton jButton1;
     // End of variables declaration//GEN-END:variables
 }

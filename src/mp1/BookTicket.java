@@ -30,6 +30,8 @@ public class BookTicket extends javax.swing.JFrame {
 
         Format = new javax.swing.ButtonGroup();
         Language = new javax.swing.ButtonGroup();
+        buttonGroup1 = new javax.swing.ButtonGroup();
+        buttonGroup2 = new javax.swing.ButtonGroup();
         jLabel1 = new javax.swing.JLabel();
         RBDim3 = new javax.swing.JRadioButton();
         jRadioButton2 = new javax.swing.JRadioButton();
@@ -271,6 +273,8 @@ public class BookTicket extends javax.swing.JFrame {
     private javax.swing.JRadioButton RBDim3;
     private javax.swing.JComboBox<String> TheaterL;
     private javax.swing.JComboBox<String> TimeL;
+    private javax.swing.ButtonGroup buttonGroup1;
+    private javax.swing.ButtonGroup buttonGroup2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
