@@ -28,28 +28,37 @@ public class WelcomeScreen extends javax.swing.JFrame {
     private void initComponents() {
 
         jOptionPane1 = new javax.swing.JOptionPane();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
         WCBT = new javax.swing.JButton();
-        WCLable = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Welcome");
         setMinimumSize(new java.awt.Dimension(660, 440));
         setPreferredSize(new java.awt.Dimension(650, 413));
+        setResizable(false);
         getContentPane().setLayout(null);
 
-        WCBT.setText("Book");
+        jLabel1.setFont(new java.awt.Font("Verdana", 1, 18)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(51, 51, 255));
+        jLabel1.setText("Click Anywhere To Start");
+        getContentPane().add(jLabel1);
+        jLabel1.setBounds(400, 0, 330, 50);
+
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mp1/images/Kiticket.png"))); // NOI18N
+        jLabel4.setToolTipText("");
+        getContentPane().add(jLabel4);
+        jLabel4.setBounds(-30, 0, 140, 200);
+
+        WCBT.setFont(new java.awt.Font("Verdana", 1, 24)); // NOI18N
+        WCBT.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mp1/images/MTBS.jpg"))); // NOI18N
         WCBT.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 WCBTActionPerformed(evt);
             }
         });
         getContentPane().add(WCBT);
-        WCBT.setBounds(320, 280, 73, 23);
-
-        WCLable.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mp1/images/MTBS.jpg"))); // NOI18N
-        WCLable.setText("Book");
-        getContentPane().add(WCLable);
-        WCLable.setBounds(0, 0, 650, 413);
+        WCBT.setBounds(-10, 0, 670, 430);
 
         setSize(new java.awt.Dimension(664, 452));
         setLocationRelativeTo(null);
@@ -93,13 +102,15 @@ public class WelcomeScreen extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new WelcomeScreen().setVisible(true);
+                
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton WCBT;
-    private javax.swing.JLabel WCLable;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JOptionPane jOptionPane1;
     // End of variables declaration//GEN-END:variables
 }

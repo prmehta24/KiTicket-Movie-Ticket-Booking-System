@@ -45,6 +45,7 @@ public class Admin extends javax.swing.JFrame {
         RaM = new javax.swing.JRadioButton();
         AdSubmitB = new javax.swing.JButton();
         EaM = new javax.swing.JRadioButton();
+        jLabel2 = new javax.swing.JLabel();
 
         jButton1.setText("jButton1");
 
@@ -84,6 +85,9 @@ public class Admin extends javax.swing.JFrame {
             }
         });
 
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mp1/images/Kiticket.png"))); // NOI18N
+        jLabel2.setToolTipText("");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -91,30 +95,43 @@ public class Admin extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(EaM)
-                    .addComponent(RaM)
-                    .addComponent(AaM)
-                    .addComponent(BaM)
-                    .addComponent(AdL)
-                    .addComponent(AdSubmitB))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(AdSubmitB)
+                            .addComponent(RaM)
+                            .addComponent(EaM))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(BaM)
+                            .addComponent(AdL)
+                            .addComponent(AaM))
+                        .addGap(0, 14, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(AdL)
-                .addGap(36, 36, 36)
-                .addComponent(BaM)
-                .addGap(18, 18, 18)
-                .addComponent(AaM)
-                .addGap(18, 18, 18)
-                .addComponent(RaM)
-                .addGap(11, 11, 11)
-                .addComponent(EaM)
-                .addGap(18, 18, 18)
-                .addComponent(AdSubmitB)
-                .addContainerGap(59, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(36, 36, 36)
+                        .addComponent(BaM)
+                        .addGap(18, 18, 18)
+                        .addComponent(AaM)
+                        .addGap(18, 18, 18)
+                        .addComponent(RaM)
+                        .addGap(11, 11, 11)
+                        .addComponent(EaM)
+                        .addGap(21, 21, 21)
+                        .addComponent(AdSubmitB)
+                        .addContainerGap(57, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())))
         );
 
         pack();
@@ -305,5 +322,6 @@ public class Admin extends javax.swing.JFrame {
     private javax.swing.JRadioButton RaM;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JButton jButton1;
+    private javax.swing.JLabel jLabel2;
     // End of variables declaration//GEN-END:variables
 }

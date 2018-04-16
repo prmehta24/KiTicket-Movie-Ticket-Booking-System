@@ -4,13 +4,15 @@
  * and open the template in the editor.
  */
 package mp1;
+import static mp1.Movies.Mname;
+import static mp1.Movies.Maddress;
 import java.awt.Dimension;
 /**
  *
  * @author iis
  */
 public class BookTicket extends javax.swing.JFrame {
-    String MTimes[]={"1234","3456"};
+    String MTimes[]={"09:00","12:00","15:00","18:00","21:00","00:00"};
 
     /**
      * Creates new form BookTicket
@@ -32,7 +34,6 @@ public class BookTicket extends javax.swing.JFrame {
         Language = new javax.swing.ButtonGroup();
         buttonGroup1 = new javax.swing.ButtonGroup();
         buttonGroup2 = new javax.swing.ButtonGroup();
-        jLabel1 = new javax.swing.JLabel();
         RBDim3 = new javax.swing.JRadioButton();
         jRadioButton2 = new javax.swing.JRadioButton();
         jLabel2 = new javax.swing.JLabel();
@@ -47,10 +48,10 @@ public class BookTicket extends javax.swing.JFrame {
         TimeL = new javax.swing.JComboBox<>();
         jLabel6 = new javax.swing.JLabel();
         BackToMI = new javax.swing.JButton();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mp1/images/BlackPanther2.jpg"))); // NOI18N
 
         Format.add(RBDim3);
         RBDim3.setText("3D");
@@ -72,8 +73,10 @@ public class BookTicket extends javax.swing.JFrame {
 
         jLabel3.setText("Language :");
 
+        Language.add(jRadioButton3);
         jRadioButton3.setText("English");
 
+        Language.add(jRadioButton4);
         jRadioButton4.setText("Hindi");
 
         jXDatePicker1.addActionListener(new java.awt.event.ActionListener() {
@@ -116,6 +119,9 @@ public class BookTicket extends javax.swing.JFrame {
                 }
             });
 
+            jLabel7.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+            jLabel7.setText(Mname);
+
             javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
             getContentPane().setLayout(layout);
             layout.setHorizontalGroup(
@@ -130,42 +136,55 @@ public class BookTicket extends javax.swing.JFrame {
                                 .addComponent(jLabel4)
                                 .addComponent(jLabel5)))
                         .addComponent(BackToMI))
-                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 43, Short.MAX_VALUE)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(layout.createSequentialGroup()
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(TheaterL, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jLabel1)
                                 .addGroup(layout.createSequentialGroup()
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jRadioButton3)
-                                        .addComponent(RBDim3))
-                                    .addGap(31, 31, 31)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jRadioButton2)
-                                        .addComponent(jRadioButton4))))
-                            .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                        .addComponent(TheaterL, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGroup(layout.createSequentialGroup()
+                                            .addGap(227, 227, 227)
+                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                .addComponent(jRadioButton3)
+                                                .addComponent(RBDim3))
+                                            .addGap(31, 31, 31)
+                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                .addComponent(jRadioButton2)
+                                                .addComponent(jRadioButton4))))
+                                    .addContainerGap(234, Short.MAX_VALUE))
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(jXDatePicker1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 295, Short.MAX_VALUE)
+                                    .addComponent(jLabel6)
+                                    .addGap(26, 26, 26)
+                                    .addComponent(TimeL, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(110, 110, 110))))
                         .addGroup(layout.createSequentialGroup()
-                            .addComponent(jXDatePicker1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 79, Short.MAX_VALUE)
-                            .addComponent(jLabel6)
-                            .addGap(26, 26, 26)
-                            .addComponent(TimeL, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(110, 110, 110))))
+                            .addGap(76, 76, 76)
+                            .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 433, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(0, 0, Short.MAX_VALUE))))
                 .addGroup(layout.createSequentialGroup()
-                    .addGap(201, 201, 201)
-                    .addComponent(BT)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
+                            .addGap(201, 201, 201)
+                            .addComponent(BT))
+                        .addGroup(layout.createSequentialGroup()
+                            .addGap(305, 305, 305)
+                            .addComponent(jLabel1)))
                     .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             );
             layout.setVerticalGroup(
                 layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(BackToMI)
                         .addGroup(layout.createSequentialGroup()
                             .addContainerGap()
-                            .addComponent(jLabel1))
-                        .addComponent(BackToMI))
-                    .addGap(33, 33, 33)
+                            .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGap(69, 69, 69)
+                    .addComponent(jLabel1)
+                    .addGap(18, 18, 18)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(RBDim3)
                         .addComponent(jRadioButton2)
@@ -187,8 +206,12 @@ public class BookTicket extends javax.swing.JFrame {
                         .addComponent(jLabel5))
                     .addGap(33, 33, 33)
                     .addComponent(BT)
-                    .addContainerGap(90, Short.MAX_VALUE))
+                    .addContainerGap(191, Short.MAX_VALUE))
             );
+
+            jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource(Maddress)));
+
+            // Code adding the component to the parent container - not shown here
 
             pack();
             setLocationRelativeTo(null);
@@ -220,7 +243,6 @@ public class BookTicket extends javax.swing.JFrame {
     private void BackToMIActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackToMIActionPerformed
         // TODO add your handling code here:
         dispose();
-        new MovieInfo().setVisible(true);
     }//GEN-LAST:event_BackToMIActionPerformed
 
     private void TimeLActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TimeLActionPerformed
@@ -281,6 +303,7 @@ public class BookTicket extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JRadioButton jRadioButton2;
     private javax.swing.JRadioButton jRadioButton3;
     private javax.swing.JRadioButton jRadioButton4;

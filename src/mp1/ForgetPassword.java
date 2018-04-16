@@ -118,6 +118,7 @@ public class ForgetPassword extends javax.swing.JFrame {
         SubmitFPEmail = new javax.swing.JButton();
         FPEmail = new javax.swing.JTextField();
         BackToL = new javax.swing.JButton();
+        jLabel4 = new javax.swing.JLabel();
 
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);
@@ -128,8 +129,11 @@ public class ForgetPassword extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Forget Password");
 
+        FPLEmail.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        FPLEmail.setForeground(new java.awt.Color(0, 102, 102));
         FPLEmail.setText("Enter recovery E-mail : ");
 
+        SubmitFPEmail.setBackground(new java.awt.Color(0, 255, 0));
         SubmitFPEmail.setText("Submit");
         SubmitFPEmail.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -143,12 +147,16 @@ public class ForgetPassword extends javax.swing.JFrame {
             }
         });
 
+        BackToL.setBackground(new java.awt.Color(255, 51, 51));
         BackToL.setText("Back");
         BackToL.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BackToLActionPerformed(evt);
             }
         });
+
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mp1/images/Kiticket.png"))); // NOI18N
+        jLabel4.setToolTipText("");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -165,7 +173,11 @@ public class ForgetPassword extends javax.swing.JFrame {
                         .addComponent(FPLEmail)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(FPEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 246, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(21, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -177,7 +189,9 @@ public class ForgetPassword extends javax.swing.JFrame {
                     .addComponent(FPEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(SubmitFPEmail)
-                .addContainerGap(200, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
+                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         getAccessibleContext().setAccessibleDescription("Forget Password");
@@ -326,6 +340,7 @@ String uPass= "password";
     public javax.swing.JTextField FPEmail;
     private javax.swing.JLabel FPLEmail;
     private javax.swing.JButton SubmitFPEmail;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextArea jTextArea1;
     private javax.swing.JTextField jTextField1;

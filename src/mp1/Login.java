@@ -15,6 +15,7 @@ import java.util.logging.Logger;
 
 import javax.swing.JFrame;
 import java.awt.Dimension;
+import java.awt.event.KeyEvent;
 import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -86,6 +87,7 @@ public class Login extends javax.swing.JFrame {
         ForgetPass = new javax.swing.JButton();
         Password = new javax.swing.JPasswordField();
         jButton1 = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
 
         jMenu1.setText("File");
         jMenuBar1.add(jMenu1);
@@ -161,7 +163,13 @@ public class Login extends javax.swing.JFrame {
         setTitle("Login");
         setLocationByPlatform(true);
         setName("Login Screen"); // NOI18N
+        addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                formKeyTyped(evt);
+            }
+        });
 
+        Submit.setBackground(new java.awt.Color(51, 204, 0));
         Submit.setText("Submit");
         Submit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -169,11 +177,16 @@ public class Login extends javax.swing.JFrame {
             }
         });
 
+        UsernameLabel.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        UsernameLabel.setForeground(new java.awt.Color(0, 102, 102));
         UsernameLabel.setText("Username");
         UsernameLabel.setName(""); // NOI18N
 
+        PasswordLabel.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        PasswordLabel.setForeground(new java.awt.Color(0, 102, 102));
         PasswordLabel.setText("Password");
 
+        ForgetPass.setBackground(new java.awt.Color(204, 0, 0));
         ForgetPass.setText("Forget Password");
         ForgetPass.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -181,6 +194,13 @@ public class Login extends javax.swing.JFrame {
             }
         });
 
+        Password.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                PasswordKeyPressed(evt);
+            }
+        });
+
+        jButton1.setBackground(new java.awt.Color(255, 102, 0));
         jButton1.setText("Sign-up");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -188,28 +208,29 @@ public class Login extends javax.swing.JFrame {
             }
         });
 
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mp1/images/Kiticket.png"))); // NOI18N
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jButton1))
-            .addGroup(layout.createSequentialGroup()
+                .addGap(6, 6, 6)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(14, 14, 14)
-                        .addComponent(UsernameLabel))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(PasswordLabel)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addComponent(UsernameLabel)
+                    .addComponent(PasswordLabel))
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(Username)
                     .addComponent(Submit)
                     .addComponent(Password, javax.swing.GroupLayout.DEFAULT_SIZE, 141, Short.MAX_VALUE)
                     .addComponent(ForgetPass))
-                .addGap(22, 187, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 108, Short.MAX_VALUE)
+                .addComponent(jButton1))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -221,14 +242,19 @@ public class Login extends javax.swing.JFrame {
                     .addComponent(Username, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(UsernameLabel))
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(PasswordLabel)
-                    .addComponent(Password, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(24, 24, 24)
-                .addComponent(Submit)
-                .addGap(18, 18, 18)
-                .addComponent(ForgetPass)
-                .addContainerGap(101, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(Password, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(PasswordLabel))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(24, 24, 24)
+                        .addComponent(Submit)
+                        .addGap(18, 18, 18)
+                        .addComponent(ForgetPass)
+                        .addContainerGap(101, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))))
         );
 
         Submit.getAccessibleContext().setAccessibleDescription("Submit");
@@ -311,7 +337,7 @@ public class Login extends javax.swing.JFrame {
     }
                 else{
                         String host = "jdbc:derby://localhost:1527/Users";
-       strP=md5(strP);
+       //strP=md5(strP);
 String uName = "username";
 String uPass= "password";
     int flag=0;
@@ -355,6 +381,21 @@ String uPass= "password";
         SignUP su=new SignUP();
         su.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
+/*
+    private void formKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formKeyTyped
+        // TODO add your handling code here:
+        if(evt.getKeyCode() == KeyEvent.VK_ENTER)
+            System.out.println("asefsutuip");
+            //SubmitActionPerformed(java.awt.event.ActionEvent evt);
+    }//GEN-LAST:event_formKeyTyped
+*/
+    private void PasswordKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_PasswordKeyPressed
+        // TODO add your handling code here:
+         if(evt.getKeyCode() == KeyEvent.VK_ENTER){
+             java.awt.event.ActionEvent e = null;
+             SubmitActionPerformed(e);
+         }
+    }//GEN-LAST:event_PasswordKeyPressed
 
     /**
      * @param args the command line arguments
@@ -407,6 +448,7 @@ String uPass= "password";
     private javax.swing.JFrame jFrame1;
     private javax.swing.JFrame jFrame2;
     private javax.swing.JInternalFrame jInternalFrame1;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;

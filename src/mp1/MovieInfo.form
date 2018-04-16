@@ -179,6 +179,9 @@
     </Component>
     <Component class="javax.swing.JButton" name="BackToM">
       <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="33" green="0" red="ff" type="rgb"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Back"/>
       </Properties>
       <Events>
@@ -187,6 +190,9 @@
     </Component>
     <Component class="javax.swing.JButton" name="BookMT">
       <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="33" green="ff" red="0" type="rgb"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Book Movie"/>
       </Properties>
       <Events>

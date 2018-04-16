@@ -114,6 +114,7 @@ public String Mcast,Mdescription;
         jLabel4.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         jLabel4.setText(Mname);
 
+        BackToM.setBackground(new java.awt.Color(255, 0, 51));
         BackToM.setText("Back");
         BackToM.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -121,6 +122,7 @@ public String Mcast,Mdescription;
             }
         });
 
+        BookMT.setBackground(new java.awt.Color(0, 255, 51));
         BookMT.setText("Book Movie");
         BookMT.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

@@ -86,6 +86,7 @@ public class Movies extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("MovieScreen");
 
+        Pmoive.setBackground(new java.awt.Color(255, 102, 102));
         Pmoive.setText("Previous");
         Pmoive.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -93,6 +94,7 @@ public class Movies extends javax.swing.JFrame {
             }
         });
 
+        Nmovie.setBackground(new java.awt.Color(102, 255, 204));
         Nmovie.setText("Next");
         Nmovie.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -116,6 +118,7 @@ public class Movies extends javax.swing.JFrame {
             }
         });
 
+        BackToL.setBackground(new java.awt.Color(255, 0, 51));
         BackToL.setText("Back");
         BackToL.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

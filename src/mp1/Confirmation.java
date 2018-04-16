@@ -6,6 +6,8 @@
 package mp1;
 
 import java.awt.Dimension;
+import static mp1.Movies.Mname;
+import static mp1.Movies.Maddress;
 
 /**
  *
@@ -48,7 +50,7 @@ public class Confirmation extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mp1/images/BP3.jpg"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource(Maddress)));
 
         jLabel2.setText("Movie :");
 
@@ -74,6 +76,7 @@ public class Confirmation extends javax.swing.JFrame {
 
         jLabel14.setText("10:45 AM Saturday, 17th March,2018");
 
+        Conf.setBackground(new java.awt.Color(0, 255, 0));
         Conf.setText("Confirm");
         Conf.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -81,6 +84,7 @@ public class Confirmation extends javax.swing.JFrame {
             }
         });
 
+        BackToBT.setBackground(new java.awt.Color(255, 0, 0));
         BackToBT.setText("Back");
         BackToBT.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -167,7 +171,7 @@ public class Confirmation extends javax.swing.JFrame {
                     .addComponent(jLabel14))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel6)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 59, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Conf)
                     .addComponent(BackToBT))
