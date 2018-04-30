@@ -5,6 +5,7 @@
  */
 package mp1;
 import java.awt.Dimension;
+import java.awt.event.KeyEvent;
 import java.io.*;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -119,11 +120,29 @@ public class SignUP extends javax.swing.JFrame {
         jLabel2.setForeground(new java.awt.Color(0, 102, 102));
         jLabel2.setText("Password");
 
+        SUEmailM.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                SUEmailMKeyPressed(evt);
+            }
+        });
+
+        SUPass.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                SUPassKeyPressed(evt);
+            }
+        });
+
         SubmitSU.setBackground(new java.awt.Color(0, 255, 0));
         SubmitSU.setText("Submit");
         SubmitSU.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 SubmitSUActionPerformed(evt);
+            }
+        });
+
+        SUun.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                SUunKeyPressed(evt);
             }
         });
 
@@ -280,6 +299,30 @@ public class SignUP extends javax.swing.JFrame {
         dispose();
         //new Login().setVisible(true);
     }//GEN-LAST:event_BackToLActionPerformed
+
+    private void SUPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_SUPassKeyPressed
+        // TODO add your handling code here:
+        if(evt.getKeyCode() == KeyEvent.VK_ENTER){
+             java.awt.event.ActionEvent e = null;
+             SubmitSUActionPerformed(e);
+         }
+    }//GEN-LAST:event_SUPassKeyPressed
+
+    private void SUEmailMKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_SUEmailMKeyPressed
+        // TODO add your handling code here:
+         if(evt.getKeyCode() == KeyEvent.VK_ENTER){
+             java.awt.event.ActionEvent e = null;
+             SubmitSUActionPerformed(e);
+         }
+    }//GEN-LAST:event_SUEmailMKeyPressed
+
+    private void SUunKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_SUunKeyPressed
+        // TODO add your handling code here:
+         if(evt.getKeyCode() == KeyEvent.VK_ENTER){
+             java.awt.event.ActionEvent e = null;
+             SubmitSUActionPerformed(e);
+         }
+    }//GEN-LAST:event_SUunKeyPressed
 
     /**
      * @param args the command line arguments

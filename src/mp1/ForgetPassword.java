@@ -5,6 +5,7 @@
  */
 package mp1;
 import java.awt.Dimension;
+import java.awt.event.KeyEvent;
 import java.io.*;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -144,6 +145,11 @@ public class ForgetPassword extends javax.swing.JFrame {
         FPEmail.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 FPEmailActionPerformed(evt);
+            }
+        });
+        FPEmail.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                FPEmailKeyPressed(evt);
             }
         });
 
@@ -294,6 +300,14 @@ String uPass= "password";
         dispose();
         //new Login().setVisible(true);
     }//GEN-LAST:event_BackToLActionPerformed
+
+    private void FPEmailKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_FPEmailKeyPressed
+        // TODO add your handling code here:
+        if(evt.getKeyCode() == KeyEvent.VK_ENTER){
+             java.awt.event.ActionEvent e = null;
+             SubmitFPEmailActionPerformed(e);
+         }
+    }//GEN-LAST:event_FPEmailKeyPressed
 
     /**
      * @param args the command line arguments

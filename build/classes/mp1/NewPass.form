@@ -113,8 +113,14 @@
       </Events>
     </Component>
     <Component class="javax.swing.JPasswordField" name="NPTF">
+      <Events>
+        <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="NPTFKeyPressed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JPasswordField" name="NPCnfTF">
+      <Events>
+        <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="NPCnfTFKeyPressed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel4">
       <Properties>

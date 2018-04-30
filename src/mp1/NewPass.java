@@ -5,6 +5,7 @@
  */
 package mp1;
 
+import java.awt.event.KeyEvent;
 import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -74,6 +75,18 @@ public class NewPass extends javax.swing.JFrame {
         NewPassSubmitB.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 NewPassSubmitBActionPerformed(evt);
+            }
+        });
+
+        NPTF.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                NPTFKeyPressed(evt);
+            }
+        });
+
+        NPCnfTF.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                NPCnfTFKeyPressed(evt);
             }
         });
 
@@ -174,6 +187,22 @@ ForgetPassword fp= new ForgetPassword();
             JOptionPane.showMessageDialog(np,"Password Doesn't match");
         }
     }//GEN-LAST:event_NewPassSubmitBActionPerformed
+
+    private void NPCnfTFKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_NPCnfTFKeyPressed
+        // TODO add your handling code here:
+        if(evt.getKeyCode() == KeyEvent.VK_ENTER){
+             java.awt.event.ActionEvent e = null;
+             NewPassSubmitBActionPerformed(e);
+         }
+    }//GEN-LAST:event_NPCnfTFKeyPressed
+
+    private void NPTFKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_NPTFKeyPressed
+        // TODO add your handling code here:
+        if(evt.getKeyCode() == KeyEvent.VK_ENTER){
+             java.awt.event.ActionEvent e = null;
+             NewPassSubmitBActionPerformed(e);
+         }
+    }//GEN-LAST:event_NPTFKeyPressed
 
     /**
      * @param args the command line arguments

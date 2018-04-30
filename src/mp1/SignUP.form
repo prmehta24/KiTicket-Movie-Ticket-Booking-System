@@ -199,8 +199,14 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="SUEmailM">
+      <Events>
+        <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="SUEmailMKeyPressed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JPasswordField" name="SUPass">
+      <Events>
+        <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="SUPassKeyPressed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="SubmitSU">
       <Properties>
@@ -214,6 +220,9 @@
       </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="SUun">
+      <Events>
+        <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="SUunKeyPressed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel3">
       <Properties>

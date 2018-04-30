@@ -6,6 +6,7 @@
 package mp1;
 
 import java.awt.Dimension;
+import java.awt.event.KeyEvent;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -85,6 +86,11 @@ public class Movies extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("MovieScreen");
+        addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                formKeyPressed(evt);
+            }
+        });
 
         Pmoive.setBackground(new java.awt.Color(255, 102, 102));
         Pmoive.setText("Previous");
@@ -117,12 +123,22 @@ public class Movies extends javax.swing.JFrame {
                 MimgActionPerformed(evt);
             }
         });
+        Mimg.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                MimgKeyPressed(evt);
+            }
+        });
 
         BackToL.setBackground(new java.awt.Color(255, 0, 51));
         BackToL.setText("Back");
         BackToL.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BackToLActionPerformed(evt);
+            }
+        });
+        BackToL.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                BackToLKeyPressed(evt);
             }
         });
 
@@ -239,6 +255,50 @@ public class Movies extends javax.swing.JFrame {
             Logger.getLogger(Movies.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_PmoiveActionPerformed
+
+    private void formKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formKeyPressed
+        // TODO add your handling code here:
+        if(evt.getKeyCode()== KeyEvent.VK_LEFT){
+            java.awt.event.ActionEvent e=null;
+            PmoiveActionPerformed(e);
+        }
+        else if(evt.getKeyCode()== KeyEvent.VK_RIGHT){
+            java.awt.event.ActionEvent e=null;
+            NmovieActionPerformed(e);
+        }
+    }//GEN-LAST:event_formKeyPressed
+
+    private void MimgKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_MimgKeyPressed
+        // TODO add your handling code here:
+        if(evt.getKeyCode()== KeyEvent.VK_LEFT){
+            java.awt.event.ActionEvent e=null;
+            PmoiveActionPerformed(e);
+        }
+        else if(evt.getKeyCode()== KeyEvent.VK_RIGHT){
+            java.awt.event.ActionEvent e=null;
+            NmovieActionPerformed(e);
+        }
+        else if(evt.getKeyCode()== KeyEvent.VK_ENTER){
+            java.awt.event.ActionEvent e=null;
+            MimgActionPerformed(e);
+        }
+    }//GEN-LAST:event_MimgKeyPressed
+
+    private void BackToLKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BackToLKeyPressed
+        // TODO add your handling code here:
+        if(evt.getKeyCode()== KeyEvent.VK_LEFT){
+            java.awt.event.ActionEvent e=null;
+            PmoiveActionPerformed(e);
+        }
+        else if(evt.getKeyCode()== KeyEvent.VK_RIGHT){
+            java.awt.event.ActionEvent e=null;
+            NmovieActionPerformed(e);
+        }
+        else if(evt.getKeyCode()== KeyEvent.VK_ENTER){
+            java.awt.event.ActionEvent e=null;
+            BackToLActionPerformed(e);
+        }
+    }//GEN-LAST:event_BackToLKeyPressed
 
     /**
      * @param args the command line arguments

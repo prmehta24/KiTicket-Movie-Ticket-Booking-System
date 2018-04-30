@@ -6,6 +6,7 @@
 package mp1;
 
 import java.awt.Dimension;
+import java.awt.event.KeyEvent;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -89,6 +90,7 @@ public String Mcast,Mdescription;
         BookMT = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Movie Info");
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource(Maddress)));
 
@@ -121,12 +123,22 @@ public String Mcast,Mdescription;
                 BackToMActionPerformed(evt);
             }
         });
+        BackToM.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                BackToMKeyPressed(evt);
+            }
+        });
 
         BookMT.setBackground(new java.awt.Color(0, 255, 51));
         BookMT.setText("Book Movie");
         BookMT.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BookMTActionPerformed(evt);
+            }
+        });
+        BookMT.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                BookMTKeyPressed(evt);
             }
         });
 
@@ -179,7 +191,7 @@ public String Mcast,Mdescription;
                         .addContainerGap()
                         .addComponent(BookMT)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 186, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -208,6 +220,22 @@ public String Mcast,Mdescription;
         // TODO add your handling code here:
         dispose();
     }//GEN-LAST:event_BackToMActionPerformed
+
+    private void BackToMKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BackToMKeyPressed
+        // TODO add your handling code here:
+        if(evt.getKeyCode()== KeyEvent.VK_ENTER){
+            java.awt.event.ActionEvent e=null;
+            BackToMActionPerformed(e);
+        }
+    }//GEN-LAST:event_BackToMKeyPressed
+
+    private void BookMTKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BookMTKeyPressed
+        // TODO add your handling code here:
+        if(evt.getKeyCode()== KeyEvent.VK_ENTER){
+            java.awt.event.ActionEvent e=null;
+            BookMTActionPerformed(e);
+        }
+    }//GEN-LAST:event_BookMTKeyPressed
 
     /**
      * @param args the command line arguments

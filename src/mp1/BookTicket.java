@@ -7,17 +7,73 @@ package mp1;
 import static mp1.Movies.Mname;
 import static mp1.Movies.Maddress;
 import java.awt.Dimension;
+import java.awt.event.KeyEvent;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import static mp1.Movies.Maddress;
+import static mp1.Movies.Mname;
 /**
  *
  * @author iis
  */
 public class BookTicket extends javax.swing.JFrame {
+    ResultSet rs;
     String MTimes[]={"09:00","12:00","15:00","18:00","21:00","00:00"};
+    String MDates[];
 
     /**
      * Creates new form BookTicket
      */
     public BookTicket() {
+        String host = "jdbc:derby://localhost:1527/Users";
+
+        
+        String uName = "username";
+        String uPass= "password";
+        try {
+            Connection con;
+      con = DriverManager.getConnection( host,uName,uPass);
+      Statement stmt = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
+      //String SQL = "SELECT * FROM Data";
+      
+      //Statement stmt = con.createStatement();
+        String SQL = "SELECT DISTINCT DATES FROM SHOWS ";
+       
+            try {
+                 rs=stmt.executeQuery(SQL);
+                 int count=0;
+                 while(rs.next())
+                     count++;
+                 System.out.println("Size: "+count);
+                 rs=stmt.executeQuery(SQL);
+                 MDates=new String[count];
+                  count=0;
+                  while(rs.next())
+                  {
+                      MDates[count]=rs.getDate("Date");
+                  }
+                 
+                
+                
+                  
+                    
+            } 
+            catch (SQLException ex) {
+                Logger.getLogger(SignUP.class.getName()).log(Level.SEVERE, null, ex);
+                
+            }
+      
+                
+        }
+        catch(SQLException e){
+                
+        }
+        
         initComponents();
     }
 
@@ -40,7 +96,6 @@ public class BookTicket extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jRadioButton3 = new javax.swing.JRadioButton();
         jRadioButton4 = new javax.swing.JRadioButton();
-        jXDatePicker1 = new org.jdesktop.swingx.JXDatePicker();
         jLabel4 = new javax.swing.JLabel();
         TheaterL = new javax.swing.JComboBox<>();
         jLabel5 = new javax.swing.JLabel();
@@ -48,10 +103,12 @@ public class BookTicket extends javax.swing.JFrame {
         TimeL = new javax.swing.JComboBox<>();
         jLabel6 = new javax.swing.JLabel();
         BackToMI = new javax.swing.JButton();
-        jLabel7 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        jComboBox1 = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Book Ticket");
 
         Format.add(RBDim3);
         RBDim3.setText("3D");
@@ -78,10 +135,9 @@ public class BookTicket extends javax.swing.JFrame {
 
         Language.add(jRadioButton4);
         jRadioButton4.setText("Hindi");
-
-        jXDatePicker1.addActionListener(new java.awt.event.ActionListener() {
+        jRadioButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jXDatePicker1ActionPerformed(evt);
+                jRadioButton4ActionPerformed(evt);
             }
         });
 
@@ -96,126 +152,138 @@ public class BookTicket extends javax.swing.JFrame {
 
         jLabel5.setText("Theater :");
 
+        BT.setBackground(new java.awt.Color(51, 255, 0));
         BT.setText("Book Ticket");
         BT.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BTActionPerformed(evt);
             }
         });
+        BT.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                BTKeyPressed(evt);
+            }
+        });
 
-        TimeL.setModel(new javax.swing.DefaultComboBoxModel<>(MTimes);
-            TimeL.addActionListener(new java.awt.event.ActionListener() {
-                public void actionPerformed(java.awt.event.ActionEvent evt) {
-                    TimeLActionPerformed(evt);
-                }
-            });
+        TimeL.setModel(new javax.swing.DefaultComboBoxModel<>(MTimes));
+        TimeL.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                TimeLActionPerformed(evt);
+            }
+        });
 
-            jLabel6.setText("Time :");
+        jLabel6.setText("Time :");
 
-            BackToMI.setText("Back");
-            BackToMI.addActionListener(new java.awt.event.ActionListener() {
-                public void actionPerformed(java.awt.event.ActionEvent evt) {
-                    BackToMIActionPerformed(evt);
-                }
-            });
+        BackToMI.setBackground(new java.awt.Color(255, 0, 0));
+        BackToMI.setText("Back");
+        BackToMI.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BackToMIActionPerformed(evt);
+            }
+        });
+        BackToMI.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                BackToMIKeyPressed(evt);
+            }
+        });
 
-            jLabel7.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-            jLabel7.setText(Mname);
+        jLabel1.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        jLabel1.setText(Mname);
 
-            javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-            getContentPane().setLayout(layout);
-            layout.setHorizontalGroup(
-                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(38, 38, 38)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLabel2)
-                                .addComponent(jLabel3)
+        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource(Maddress)));
+
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 18, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel5)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(TheaterL, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel4)
-                                .addComponent(jLabel5)))
-                        .addComponent(BackToMI))
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(layout.createSequentialGroup()
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(TheaterL, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGroup(layout.createSequentialGroup()
-                                            .addGap(227, 227, 227)
-                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                .addComponent(jRadioButton3)
-                                                .addComponent(RBDim3))
-                                            .addGap(31, 31, 31)
-                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                .addComponent(jRadioButton2)
-                                                .addComponent(jRadioButton4))))
-                                    .addContainerGap(234, Short.MAX_VALUE))
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(jXDatePicker1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 295, Short.MAX_VALUE)
-                                    .addComponent(jLabel6)
-                                    .addGap(26, 26, 26)
-                                    .addComponent(TimeL, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(110, 110, 110))))
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(76, 76, 76)
-                            .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 433, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(0, 0, Short.MAX_VALUE))))
-                .addGroup(layout.createSequentialGroup()
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(201, 201, 201)
-                            .addComponent(BT))
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(305, 305, 305)
-                            .addComponent(jLabel1)))
-                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            );
-            layout.setVerticalGroup(
-                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(112, 112, 112)
+                        .addComponent(jLabel6)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(TimeL, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(9, 9, 9)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel2))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(RBDim3)
+                            .addComponent(jRadioButton3))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jRadioButton2)
+                            .addComponent(jRadioButton4))))
+                .addGap(52, 52, 52)
+                .addComponent(BT)
+                .addGap(37, 37, 37))
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
                         .addComponent(BackToMI)
-                        .addGroup(layout.createSequentialGroup()
-                            .addContainerGap()
-                            .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGap(69, 69, 69)
-                    .addComponent(jLabel1)
-                    .addGap(18, 18, 18)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(RBDim3)
-                        .addComponent(jRadioButton2)
-                        .addComponent(jLabel2))
-                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel3)
-                        .addComponent(jRadioButton3)
-                        .addComponent(jRadioButton4))
-                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jXDatePicker1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel4)
-                        .addComponent(TimeL, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel6))
-                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(TheaterL, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel5))
-                    .addGap(33, 33, 33)
-                    .addComponent(BT)
-                    .addContainerGap(191, Short.MAX_VALUE))
-            );
+                        .addGap(179, 179, 179)
+                        .addComponent(jLabel1))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(180, 180, 180)
+                        .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(BackToMI)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(20, 20, 20)
+                        .addComponent(jLabel1)))
+                .addGap(29, 29, 29)
+                .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(34, 34, 34)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(BT)
+                        .addGap(21, 21, 21))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel2)
+                            .addComponent(RBDim3)
+                            .addComponent(jRadioButton2))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jRadioButton3)
+                            .addComponent(jRadioButton4)
+                            .addComponent(jLabel3))
+                        .addGap(24, 24, 24)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel4)
+                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(TimeL, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel5)
+                            .addComponent(TheaterL, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(30, 30, 30))))
+        );
 
-            jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource(Maddress)));
-
-            // Code adding the component to the parent container - not shown here
-
-            pack();
-            setLocationRelativeTo(null);
-        }// </editor-fold>//GEN-END:initComponents
+        pack();
+        setLocationRelativeTo(null);
+    }// </editor-fold>//GEN-END:initComponents
 
     private void RBDim3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RBDim3ActionPerformed
         // TODO add your handling code here:
@@ -224,10 +292,6 @@ public class BookTicket extends javax.swing.JFrame {
     private void jRadioButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton2ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jRadioButton2ActionPerformed
-
-    private void jXDatePicker1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jXDatePicker1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jXDatePicker1ActionPerformed
 
     private void TheaterLActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TheaterLActionPerformed
         // TODO add your handling code here:
@@ -248,6 +312,26 @@ public class BookTicket extends javax.swing.JFrame {
     private void TimeLActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TimeLActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_TimeLActionPerformed
+
+    private void BTKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BTKeyPressed
+        // TODO add your handling code here:
+        if(evt.getKeyCode()== KeyEvent.VK_ENTER){
+            java.awt.event.ActionEvent e=null;
+            BTActionPerformed(e);
+        }
+    }//GEN-LAST:event_BTKeyPressed
+
+    private void BackToMIKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BackToMIKeyPressed
+        // TODO add your handling code here:
+        if(evt.getKeyCode()== KeyEvent.VK_ENTER){
+            java.awt.event.ActionEvent e=null;
+            BackToMIActionPerformed(e);
+        }
+    }//GEN-LAST:event_BackToMIKeyPressed
+
+    private void jRadioButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton4ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jRadioButton4ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -277,13 +361,11 @@ public class BookTicket extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                BookTicket bt=new BookTicket();
-                bt.setVisible(true);
-                bt.setResizable(false);
-                bt.setSize(new Dimension(517,454));
-            }
+        java.awt.EventQueue.invokeLater(() -> {
+            BookTicket bt=new BookTicket();
+            bt.setVisible(true);
+            bt.setResizable(false);
+            bt.setSize(new Dimension(517,454));
         });
     }
 
@@ -297,6 +379,7 @@ public class BookTicket extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> TimeL;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.ButtonGroup buttonGroup2;
+    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -307,6 +390,5 @@ public class BookTicket extends javax.swing.JFrame {
     private javax.swing.JRadioButton jRadioButton2;
     private javax.swing.JRadioButton jRadioButton3;
     private javax.swing.JRadioButton jRadioButton4;
-    private org.jdesktop.swingx.JXDatePicker jXDatePicker1;
     // End of variables declaration//GEN-END:variables
 }

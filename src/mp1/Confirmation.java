@@ -6,6 +6,7 @@
 package mp1;
 
 import java.awt.Dimension;
+import java.awt.event.KeyEvent;
 import static mp1.Movies.Mname;
 import static mp1.Movies.Maddress;
 
@@ -83,12 +84,22 @@ public class Confirmation extends javax.swing.JFrame {
                 ConfActionPerformed(evt);
             }
         });
+        Conf.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                ConfKeyPressed(evt);
+            }
+        });
 
         BackToBT.setBackground(new java.awt.Color(255, 0, 0));
         BackToBT.setText("Back");
         BackToBT.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BackToBTActionPerformed(evt);
+            }
+        });
+        BackToBT.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                BackToBTKeyPressed(evt);
             }
         });
 
@@ -189,8 +200,23 @@ public class Confirmation extends javax.swing.JFrame {
     private void BackToBTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackToBTActionPerformed
         // TODO add your handling code here:
         dispose();
-        new BookTicket().setVisible(true);
     }//GEN-LAST:event_BackToBTActionPerformed
+
+    private void BackToBTKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BackToBTKeyPressed
+        // TODO add your handling code here:
+        if(evt.getKeyCode()== KeyEvent.VK_ENTER){
+            java.awt.event.ActionEvent e=null;
+            BackToBTActionPerformed(e);
+        }
+    }//GEN-LAST:event_BackToBTKeyPressed
+
+    private void ConfKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_ConfKeyPressed
+        // TODO add your handling code here:
+        if(evt.getKeyCode()== KeyEvent.VK_ENTER){
+            java.awt.event.ActionEvent e=null;
+            ConfActionPerformed(e);
+        }
+    }//GEN-LAST:event_ConfKeyPressed
 
     /**
      * @param args the command line arguments
