@@ -4,8 +4,6 @@
  * and open the template in the editor.
  */
 package mp1;
-import static mp1.Movies.Mname;
-import static mp1.Movies.Maddress;
 import java.awt.Dimension;
 import java.awt.event.KeyEvent;
 import java.sql.Connection;
@@ -13,6 +11,8 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import static mp1.Movies.Maddress;
@@ -23,7 +23,7 @@ import static mp1.Movies.Mname;
  */
 public class BookTicket extends javax.swing.JFrame {
     ResultSet rs;
-    String MTimes[]={"09:00","12:00","15:00","18:00","21:00","00:00"};
+    String MTimes[];
     String MDates[];
 
     /**
@@ -42,20 +42,35 @@ public class BookTicket extends javax.swing.JFrame {
       //String SQL = "SELECT * FROM Data";
       
       //Statement stmt = con.createStatement();
-        String SQL = "SELECT DISTINCT DATES FROM SHOWS ";
+        String SQL = "SELECT DISTINCT DATE FROM SHOWS WHERE MOVIE='"+Mname+"'";
        
             try {
                  rs=stmt.executeQuery(SQL);
                  int count=0;
                  while(rs.next())
                      count++;
-                 System.out.println("Size: "+count);
+                 System.out.println("Size of Date Array: "+count);
                  rs=stmt.executeQuery(SQL);
                  MDates=new String[count];
                   count=0;
+                 DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");  
                   while(rs.next())
                   {
-                      MDates[count]=rs.getDate("Date");
+                      MDates[count]=dateFormat.format(rs.getDate("Date"));
+                  }
+                  SQL = "SELECT DISTINCT TIME FROM SHOWS WHERE MOVIE='"+Mname+"'";
+                  rs=stmt.executeQuery(SQL);
+                 count=0;
+                 while(rs.next())
+                     count++;
+                 System.out.println("Size of Time Array: "+count);
+                 rs=stmt.executeQuery(SQL);
+                 MTimes=new String[count];
+                  count=0;
+                 dateFormat = new SimpleDateFormat("hh:mm:ss");  
+                  while(rs.next())
+                  {
+                      MTimes[count]=dateFormat.format(rs.getTime("Time"));
                   }
                  
                 
@@ -97,8 +112,6 @@ public class BookTicket extends javax.swing.JFrame {
         jRadioButton3 = new javax.swing.JRadioButton();
         jRadioButton4 = new javax.swing.JRadioButton();
         jLabel4 = new javax.swing.JLabel();
-        TheaterL = new javax.swing.JComboBox<>();
-        jLabel5 = new javax.swing.JLabel();
         BT = new javax.swing.JButton();
         TimeL = new javax.swing.JComboBox<>();
         jLabel6 = new javax.swing.JLabel();
@@ -143,15 +156,6 @@ public class BookTicket extends javax.swing.JFrame {
 
         jLabel4.setText("Date :");
 
-        TheaterL.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "BigCinemas", "PVR", "Acropolis" }));
-        TheaterL.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                TheaterLActionPerformed(evt);
-            }
-        });
-
-        jLabel5.setText("Theater :");
-
         BT.setBackground(new java.awt.Color(51, 255, 0));
         BT.setText("Book Ticket");
         BT.addActionListener(new java.awt.event.ActionListener() {
@@ -190,57 +194,55 @@ public class BookTicket extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         jLabel1.setText(Mname);
 
+        jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource(Maddress)));
+        jLabel7.setPreferredSize(new java.awt.Dimension(33, 9));
+        jLabel7.setRequestFocusEnabled(false);
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(MDates));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(BackToMI)
+                .addGap(146, 146, 146)
+                .addComponent(jLabel1)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 18, Short.MAX_VALUE)
+                .addGap(0, 54, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel5)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(TheaterL, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel4)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(112, 112, 112)
-                        .addComponent(jLabel6)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(TimeL, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(178, 178, 178)
+                                .addComponent(jLabel6)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(TimeL, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(9, 9, 9)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel3)
+                                    .addComponent(jLabel2))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(RBDim3)
+                                    .addComponent(jRadioButton3))
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jRadioButton2)
+                                    .addComponent(jRadioButton4))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 16, Short.MAX_VALUE)
+                        .addComponent(BT)
+                        .addGap(37, 37, 37))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(9, 9, 9)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel2))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(RBDim3)
-                            .addComponent(jRadioButton3))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jRadioButton2)
-                            .addComponent(jRadioButton4))))
-                .addGap(52, 52, 52)
-                .addComponent(BT)
-                .addGap(37, 37, 37))
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(BackToMI)
-                        .addGap(179, 179, 179)
-                        .addComponent(jLabel1))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(180, 180, 180)
-                        .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 370, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -248,11 +250,11 @@ public class BookTicket extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(BackToMI)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(20, 20, 20)
+                        .addContainerGap()
                         .addComponent(jLabel1)))
-                .addGap(29, 29, 29)
-                .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(34, 34, 34)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, 109, Short.MAX_VALUE)
+                .addGap(27, 27, 27)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(BT)
@@ -268,17 +270,14 @@ public class BookTicket extends javax.swing.JFrame {
                             .addComponent(jRadioButton4)
                             .addComponent(jLabel3))
                         .addGap(24, 24, 24)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel4)
-                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                 .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(TimeL, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel5)
-                            .addComponent(TheaterL, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(30, 30, 30))))
+                                .addComponent(TimeL, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(jLabel4)
+                                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(53, 53, 53))))
         );
 
         pack();
@@ -293,15 +292,11 @@ public class BookTicket extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jRadioButton2ActionPerformed
 
-    private void TheaterLActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TheaterLActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_TheaterLActionPerformed
-
     private void BTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTActionPerformed
         // TODO add your handling code here:
         
-        Confirmation c=new Confirmation();
-        c.setVisible(true);
+        Seats s=new Seats();
+        s.setVisible(true);
     }//GEN-LAST:event_BTActionPerformed
 
     private void BackToMIActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackToMIActionPerformed
@@ -375,7 +370,6 @@ public class BookTicket extends javax.swing.JFrame {
     private javax.swing.ButtonGroup Format;
     private javax.swing.ButtonGroup Language;
     private javax.swing.JRadioButton RBDim3;
-    private javax.swing.JComboBox<String> TheaterL;
     private javax.swing.JComboBox<String> TimeL;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.ButtonGroup buttonGroup2;
@@ -384,7 +378,6 @@ public class BookTicket extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JRadioButton jRadioButton2;
