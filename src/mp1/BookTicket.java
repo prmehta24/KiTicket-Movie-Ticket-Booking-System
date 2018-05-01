@@ -27,8 +27,8 @@ public class BookTicket extends javax.swing.JFrame {
     ResultSet rs;
     public static String FinalTime;
     public static String FinalDate;
-    public static String Format;
-    public static String Language;
+    public static String FormatD;
+    public static String LanguageEH;
     String MTimes[];
     String MDates[];
 
@@ -309,13 +309,13 @@ public class BookTicket extends javax.swing.JFrame {
     private void BTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTActionPerformed
         // TODO add your handling code here:
         if(Format3d.isSelected())
-            Format="3D";
+            FormatD="3D";
         else
-            Format="2D";
+            FormatD="2D";
         if(LangE.isSelected())
-            Language="English";
+            LanguageEH="English";
         else
-            Language="Hindi";
+            LanguageEH="Hindi";
         FinalDate=jC1.getSelectedItem().toString();
         FinalTime=jC2.getSelectedItem().toString();
         Seats s=new Seats();

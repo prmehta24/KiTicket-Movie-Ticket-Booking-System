@@ -36,6 +36,7 @@ import static mp1.BookTicket.FinalDate;
 import static mp1.BookTicket.FinalTime;
 import static mp1.BookTicket.FormatD;
 import static mp1.BookTicket.LanguageEH;
+import static mp1.Seats.seatmatrix;
 
 /**
  *
@@ -59,6 +60,15 @@ public class Confirmation extends javax.swing.JFrame {
         return name;
 }
     public void SendEmail(String user){
+        char seatPass[]=new char[10];
+        seatPass=seatmatrix.toCharArray();
+        String BookedSeats="";
+        String t;
+        for(int i=1;i<=10;i++){
+            t=Integer.toString(i);
+            if(seatPass[i-1]=='F')
+                BookedSeats+=t;
+        }
         int BookId;
         String User= user;
         Random ran = new Random();
@@ -97,7 +107,7 @@ public class Confirmation extends javax.swing.JFrame {
 			message.setRecipients(Message.RecipientType.TO,
 				InternetAddress.parse(User));// whome u have to send mails that person id
 			message.setSubject("KITICKET: Your Ticket is Here");
-			message.setText("Movie: "+Mname+"\nLanguage: "+LanguageEH+"\nFormat: "+FormatD+"\nDate: "+FinalDate+"\nTime: "+FinalTime+"\nBooking Id: "+str+"\n\nThank you for choosing us :-)\n\nRegards,\nKITICKET Team");
+			message.setText("Movie: "+Mname+"\nBooked Seats: "+BookedSeats+"\nLanguage: "+LanguageEH+"\nFormat: "+FormatD+"\nDate: "+FinalDate+"\nTime: "+FinalTime+"\nBooking Id: "+str+"\n\nThank you for choosing us :-)\n\nRegards,\nKITICKET Team");
                         System.out.println("Booking Id : "+str);
                         
 			Transport.send(message);

@@ -24,8 +24,9 @@ import static mp1.BookTicket.FinalTime;
  */
 public class Seats extends javax.swing.JFrame {
  ResultSet rs;
+ 
  public char seatarray[];
-        String seatmatrix;
+        public static String seatmatrix;
     /**
      * Creates new form Seats
      */
@@ -387,7 +388,8 @@ public class Seats extends javax.swing.JFrame {
 
     private void BookSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BookSActionPerformed
         // TODO add your handling code here:
-        
+        if(Seat1.isSelected())
+            
         new Confirmation().setVisible(true);
     }//GEN-LAST:event_BookSActionPerformed
 
