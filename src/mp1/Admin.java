@@ -159,9 +159,16 @@ public class Admin extends javax.swing.JFrame {
         String strPATH=path.getText();
         String strDESCRIPTION=description.getText();
         String strMCAST=mcast.getText();
+        if(strNAME.equals("")||strPATH.equals("")||strDESCRIPTION.equals("")||strMCAST.equals(""))
+        {
+            SignUP su=new SignUP();
+            JOptionPane.showMessageDialog(su,"Some fields were not filled."); 
+        }
+        else
+        {
         //int str = JOptionPane.showConfirmDialog(null,fields,"Enter Required Fields",JOptionPane.OK_CANCEL_OPTION);
         String host = "jdbc:derby://localhost:1527/Users";
-        SignUP su=new SignUP();
+        
         String uName = "username";
         String uPass= "password";
     
@@ -184,7 +191,7 @@ public class Admin extends javax.swing.JFrame {
                 
             }
       String Cmd = "INSERT INTO MOVIENAMES (NAME,PATH,DESCRIPTION,MCAST) values ('"+strNAME+"','"+strPATH+"','"+strDESCRIPTION+"','"+strMCAST+"')";
-      JOptionPane.showMessageDialog(su,"Success...");
+      
       dispose();
                 try {
                     stmt.executeUpdate(Cmd);
@@ -196,11 +203,14 @@ public class Admin extends javax.swing.JFrame {
                     //System.out.println("Email/PhoneNo: "+user+" Password: "+pswd);
                     
                     //  }
+                    JOptionPane.showMessageDialog(su,"Success...");
                 } catch (SQLException ex) {
                     Logger.getLogger(SignUP.class.getName()).log(Level.SEVERE, null, ex);
                 }
         }catch(Exception e){
-                
+             
+        }
+          
         }
         }
         else if(RaM.isSelected()){
@@ -209,7 +219,7 @@ public class Admin extends javax.swing.JFrame {
                 String uName = "username";
                 String uPass= "password";
                 Admin ad=new Admin();
-                String RmName= JOptionPane.showInputDialog(ad,"Enter a movie name is to be removed");
+                String RmName= JOptionPane.showInputDialog(ad,"Enter a movie name to be removed");
                 Connection con;
                 con = DriverManager.getConnection( host,uName,uPass);
                 Statement stmt = con.createStatement();
