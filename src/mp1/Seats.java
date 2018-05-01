@@ -24,12 +24,14 @@ import static mp1.BookTicket.FinalTime;
  */
 public class Seats extends javax.swing.JFrame {
  ResultSet rs;
- 
+ public static int counti=0;
+ public static  int count[]={0,0,0,0,0,0,0,0,0,0};
  public char seatarray[];
         public static String seatmatrix;
     /**
      * Creates new form Seats
      */
+        public static String BookedSeats="";
     public Seats() {
        
          String host = "jdbc:derby://localhost:1527/Users";
@@ -52,20 +54,6 @@ public class Seats extends javax.swing.JFrame {
                  seatmatrix=rs.getString("SEAT");
                  System.out.println(seatmatrix);
                  seatarray=seatmatrix.toCharArray();
-                 
-                
-                
-                
-                 
-                 
-                 
-               
-                
-                 
-                
-                
-                  
-                    
             } 
             catch (SQLException ex) {
                 Logger.getLogger(SignUP.class.getName()).log(Level.SEVERE, null, ex);
@@ -388,8 +376,60 @@ public class Seats extends javax.swing.JFrame {
 
     private void BookSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BookSActionPerformed
         // TODO add your handling code here:
-        if(Seat1.isSelected())
-            
+       
+        if(Seat1.isSelected() && Seat1.isEnabled()){
+            seatarray[0]='F';
+            count[0]=1;
+        }
+        if(Seat2.isSelected() && Seat2.isEnabled()){
+            seatarray[1]='F';
+            count[1]=1;
+        }
+        if(Seat3.isSelected() && Seat3.isEnabled()){
+            seatarray[2]='F';
+            count[2]=1;
+        }
+        if(Seat4.isSelected() && Seat4.isEnabled()){
+            seatarray[3]='F';
+            count[3]=1;
+        }   
+        if(Seat5.isSelected() && Seat5.isEnabled()){
+            seatarray[4]='F';
+            count[4]=1;
+        }
+        if(Seat6.isSelected() && Seat6.isEnabled()){
+            seatarray[5]='F';
+            count[5]=1;
+        }
+        if(Seat7.isSelected() && Seat7.isEnabled()){
+            seatarray[6]='F';
+            count[6]=1;
+        }
+        if(Seat8.isSelected() && Seat8.isEnabled()){
+            seatarray[7]='F';
+            count[7]=1;
+        }
+        if(Seat9.isSelected() && Seat9.isEnabled()){
+            seatarray[8]='F';
+            count[8]=1;
+        }
+        if(Seat10.isSelected() && Seat10.isEnabled()){
+            seatarray[9]='F';
+            count[9]=1;
+        }
+        String yo=new String(seatarray);
+        seatmatrix=yo;
+        char seatPass[]=new char[10];
+        seatPass=seatmatrix.toCharArray();
+        
+        String t;
+        
+        for(int i=1;i<=10;i++){
+            t=Integer.toString(i);
+            if(seatPass[i-1]=='F' && count[i-1]==1){
+                BookedSeats+=(t+" ");
+            }
+        }
         new Confirmation().setVisible(true);
     }//GEN-LAST:event_BookSActionPerformed
 

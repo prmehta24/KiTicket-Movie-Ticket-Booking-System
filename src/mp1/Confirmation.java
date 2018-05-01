@@ -37,6 +37,9 @@ import static mp1.BookTicket.FinalTime;
 import static mp1.BookTicket.FormatD;
 import static mp1.BookTicket.LanguageEH;
 import static mp1.Seats.seatmatrix;
+import static mp1.Seats.BookedSeats;
+import static mp1.Seats.count;
+import static mp1.Seats.counti;
 
 /**
  *
@@ -60,15 +63,6 @@ public class Confirmation extends javax.swing.JFrame {
         return name;
 }
     public void SendEmail(String user){
-        char seatPass[]=new char[10];
-        seatPass=seatmatrix.toCharArray();
-        String BookedSeats="";
-        String t;
-        for(int i=1;i<=10;i++){
-            t=Integer.toString(i);
-            if(seatPass[i-1]=='F')
-                BookedSeats+=t;
-        }
         int BookId;
         String User= user;
         Random ran = new Random();
@@ -135,18 +129,18 @@ public class Confirmation extends javax.swing.JFrame {
 
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
+        Mov = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
+        ForMAT = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
+        Langu = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
-        jLabel10 = new javax.swing.JLabel();
+        Loc = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
-        jLabel12 = new javax.swing.JLabel();
+        sEAT = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
-        jLabel14 = new javax.swing.JLabel();
+        DnT = new javax.swing.JLabel();
         Conf = new javax.swing.JButton();
         BackToBT = new javax.swing.JButton();
 
@@ -156,27 +150,27 @@ public class Confirmation extends javax.swing.JFrame {
 
         jLabel2.setText("Movie :");
 
-        jLabel3.setText("Black Panther (3D)");
+        Mov.setText(Mname);
 
-        jLabel4.setText("Rating :");
+        jLabel4.setText("Format :");
 
-        jLabel5.setText("U/A");
+        ForMAT.setText(FormatD);
 
         jLabel7.setText("Language :");
 
-        jLabel8.setText("English");
+        Langu.setText(LanguageEH);
 
         jLabel9.setText("Location :");
 
-        jLabel10.setText("Big Cinemas");
+        Loc.setText("KITICKET");
 
         jLabel11.setText("Seats :");
 
-        jLabel12.setText("A7");
+        sEAT.setText(BookedSeats);
 
         jLabel13.setText("Date/Time :");
 
-        jLabel14.setText("10:45 AM Saturday, 17th March,2018");
+        DnT.setText(FinalDate+", "+FinalTime);
 
         Conf.setBackground(new java.awt.Color(0, 255, 0));
         Conf.setText("Confirm");
@@ -221,24 +215,24 @@ public class Confirmation extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(10, 10, 10)
-                                .addComponent(jLabel5))
-                            .addComponent(jLabel3)))
+                                .addComponent(ForMAT))
+                            .addComponent(Mov)))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel7)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel8))
+                        .addComponent(Langu))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel9)
                             .addComponent(jLabel11))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel12)
-                            .addComponent(jLabel10)))
+                            .addComponent(sEAT)
+                            .addComponent(Loc)))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel13)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel14, javax.swing.GroupLayout.DEFAULT_SIZE, 205, Short.MAX_VALUE)))
+                        .addComponent(DnT, javax.swing.GroupLayout.DEFAULT_SIZE, 205, Short.MAX_VALUE)))
                 .addGap(105, 105, 105))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -260,27 +254,27 @@ public class Confirmation extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(jLabel3))
+                    .addComponent(Mov))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
-                    .addComponent(jLabel5))
+                    .addComponent(ForMAT))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
-                    .addComponent(jLabel8))
+                    .addComponent(Langu))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel9)
-                    .addComponent(jLabel10))
+                    .addComponent(Loc))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel11)
-                    .addComponent(jLabel12))
+                    .addComponent(sEAT))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel13)
-                    .addComponent(jLabel14))
+                    .addComponent(DnT))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel6)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -313,6 +307,8 @@ String uPass= "password";
       rs.next();
       user=rs.getString("CONTACT");
       SendEmail(user);
+      String Cmd = "UPDATE SHOWS SET SEAT='"+seatmatrix+"' WHERE MOVIE='"+Mname+"' AND DATE='"+FinalDate+"' AND TIME='"+FinalTime+"'";
+      stmt.executeUpdate(Cmd);
         } catch (SQLException ex) {
             Logger.getLogger(DBTest.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -324,6 +320,10 @@ String uPass= "password";
 
     private void BackToBTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackToBTActionPerformed
         // TODO add your handling code here:
+        BookedSeats="";
+        for(int i=0;i<10;i++)
+            count[i]=0;
+        counti=0;
         dispose();
     }//GEN-LAST:event_BackToBTActionPerformed
 
@@ -383,19 +383,19 @@ String uPass= "password";
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BackToBT;
     private javax.swing.JButton Conf;
+    private javax.swing.JLabel DnT;
+    private javax.swing.JLabel ForMAT;
+    private javax.swing.JLabel Langu;
+    private javax.swing.JLabel Loc;
+    private javax.swing.JLabel Mov;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JLabel sEAT;
     // End of variables declaration//GEN-END:variables
 }
