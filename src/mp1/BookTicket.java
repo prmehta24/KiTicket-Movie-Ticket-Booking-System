@@ -27,6 +27,8 @@ public class BookTicket extends javax.swing.JFrame {
     ResultSet rs;
     public static String FinalTime;
     public static String FinalDate;
+    public static String Format;
+    public static String Language;
     String MTimes[];
     String MDates[];
 
@@ -109,12 +111,12 @@ public class BookTicket extends javax.swing.JFrame {
         Language = new javax.swing.ButtonGroup();
         buttonGroup1 = new javax.swing.ButtonGroup();
         buttonGroup2 = new javax.swing.ButtonGroup();
-        RBDim3 = new javax.swing.JRadioButton();
-        jRadioButton2 = new javax.swing.JRadioButton();
+        Format3d = new javax.swing.JRadioButton();
+        Format2d = new javax.swing.JRadioButton();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jRadioButton3 = new javax.swing.JRadioButton();
-        jRadioButton4 = new javax.swing.JRadioButton();
+        LangE = new javax.swing.JRadioButton();
+        LangH = new javax.swing.JRadioButton();
         jLabel4 = new javax.swing.JLabel();
         BT = new javax.swing.JButton();
         jC2 = new javax.swing.JComboBox<>();
@@ -127,20 +129,20 @@ public class BookTicket extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Book Ticket");
 
-        Format.add(RBDim3);
-        RBDim3.setSelected(true);
-        RBDim3.setText("3D");
-        RBDim3.addActionListener(new java.awt.event.ActionListener() {
+        Format.add(Format3d);
+        Format3d.setSelected(true);
+        Format3d.setText("3D");
+        Format3d.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                RBDim3ActionPerformed(evt);
+                Format3dActionPerformed(evt);
             }
         });
 
-        Format.add(jRadioButton2);
-        jRadioButton2.setText("2D");
-        jRadioButton2.addActionListener(new java.awt.event.ActionListener() {
+        Format.add(Format2d);
+        Format2d.setText("2D");
+        Format2d.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioButton2ActionPerformed(evt);
+                Format2dActionPerformed(evt);
             }
         });
 
@@ -148,15 +150,15 @@ public class BookTicket extends javax.swing.JFrame {
 
         jLabel3.setText("Language :");
 
-        Language.add(jRadioButton3);
-        jRadioButton3.setSelected(true);
-        jRadioButton3.setText("English");
+        Language.add(LangE);
+        LangE.setSelected(true);
+        LangE.setText("English");
 
-        Language.add(jRadioButton4);
-        jRadioButton4.setText("Hindi");
-        jRadioButton4.addActionListener(new java.awt.event.ActionListener() {
+        Language.add(LangH);
+        LangH.setText("Hindi");
+        LangH.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioButton4ActionPerformed(evt);
+                LangHActionPerformed(evt);
             }
         });
 
@@ -241,12 +243,12 @@ public class BookTicket extends javax.swing.JFrame {
                                     .addComponent(jLabel2))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(RBDim3)
-                                    .addComponent(jRadioButton3))
+                                    .addComponent(Format3d)
+                                    .addComponent(LangE))
                                 .addGap(18, 18, 18)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jRadioButton2)
-                                    .addComponent(jRadioButton4))))
+                                    .addComponent(Format2d)
+                                    .addComponent(LangH))))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 16, Short.MAX_VALUE)
                         .addComponent(BT)
                         .addGap(37, 37, 37))
@@ -273,12 +275,12 @@ public class BookTicket extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel2)
-                            .addComponent(RBDim3)
-                            .addComponent(jRadioButton2))
+                            .addComponent(Format3d)
+                            .addComponent(Format2d))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jRadioButton3)
-                            .addComponent(jRadioButton4)
+                            .addComponent(LangE)
+                            .addComponent(LangH)
                             .addComponent(jLabel3))
                         .addGap(24, 24, 24)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -295,16 +297,25 @@ public class BookTicket extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void RBDim3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RBDim3ActionPerformed
+    private void Format3dActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Format3dActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_RBDim3ActionPerformed
+        
+    }//GEN-LAST:event_Format3dActionPerformed
 
-    private void jRadioButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton2ActionPerformed
+    private void Format2dActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Format2dActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jRadioButton2ActionPerformed
+    }//GEN-LAST:event_Format2dActionPerformed
 
     private void BTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTActionPerformed
         // TODO add your handling code here:
+        if(Format3d.isSelected())
+            Format="3D";
+        else
+            Format="2D";
+        if(LangE.isSelected())
+            Language="English";
+        else
+            Language="Hindi";
         FinalDate=jC1.getSelectedItem().toString();
         FinalTime=jC2.getSelectedItem().toString();
         Seats s=new Seats();
@@ -337,9 +348,9 @@ public class BookTicket extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_BackToMIKeyPressed
 
-    private void jRadioButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton4ActionPerformed
+    private void LangHActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LangHActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jRadioButton4ActionPerformed
+    }//GEN-LAST:event_LangHActionPerformed
 
     private void jC1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jC1ActionPerformed
         // TODO add your handling code here:
@@ -442,8 +453,11 @@ public class BookTicket extends javax.swing.JFrame {
     private javax.swing.JButton BT;
     private javax.swing.JButton BackToMI;
     private javax.swing.ButtonGroup Format;
+    private javax.swing.JRadioButton Format2d;
+    private javax.swing.JRadioButton Format3d;
+    private javax.swing.JRadioButton LangE;
+    private javax.swing.JRadioButton LangH;
     private javax.swing.ButtonGroup Language;
-    private javax.swing.JRadioButton RBDim3;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.ButtonGroup buttonGroup2;
     private javax.swing.JComboBox<String> jC1;
@@ -454,8 +468,5 @@ public class BookTicket extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JRadioButton jRadioButton2;
-    private javax.swing.JRadioButton jRadioButton3;
-    private javax.swing.JRadioButton jRadioButton4;
     // End of variables declaration//GEN-END:variables
 }

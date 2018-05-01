@@ -92,16 +92,16 @@ public class Seats extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         buttonGroup1 = new javax.swing.ButtonGroup();
         jLabel1 = new javax.swing.JLabel();
-        jCheckBox1 = new javax.swing.JCheckBox();
-        jCheckBox2 = new javax.swing.JCheckBox();
-        jCheckBox3 = new javax.swing.JCheckBox();
-        jCheckBox4 = new javax.swing.JCheckBox();
-        jCheckBox5 = new javax.swing.JCheckBox();
-        jCheckBox6 = new javax.swing.JCheckBox();
-        jCheckBox7 = new javax.swing.JCheckBox();
-        jCheckBox8 = new javax.swing.JCheckBox();
-        jCheckBox9 = new javax.swing.JCheckBox();
-        jCheckBox10 = new javax.swing.JCheckBox();
+        Seat1 = new javax.swing.JCheckBox();
+        Seat2 = new javax.swing.JCheckBox();
+        Seat4 = new javax.swing.JCheckBox();
+        Seat5 = new javax.swing.JCheckBox();
+        Seat3 = new javax.swing.JCheckBox();
+        Seat6 = new javax.swing.JCheckBox();
+        Seat7 = new javax.swing.JCheckBox();
+        Seat8 = new javax.swing.JCheckBox();
+        Seat9 = new javax.swing.JCheckBox();
+        Seat10 = new javax.swing.JCheckBox();
         jLabel2 = new javax.swing.JLabel();
         BookS = new javax.swing.JButton();
         BackToBT = new javax.swing.JButton();
@@ -113,83 +113,93 @@ public class Seats extends javax.swing.JFrame {
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("---------------------All eyes facing this way---------------------");
 
-        jCheckBox1.setText("1");
-        jCheckBox1.setEnabled(seatarray[0]=='T'?true:false);
-        jCheckBox1.addActionListener(new java.awt.event.ActionListener() {
+        Seat1.setBackground(new java.awt.Color(153, 153, 153));
+        Seat1.setText("1");
+        Seat1.setEnabled(seatarray[0]=='T'?true:false);
+        Seat1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCheckBox1ActionPerformed(evt);
+                Seat1ActionPerformed(evt);
             }
         });
 
-        jCheckBox2.setText("2");
-        jCheckBox2.setEnabled(seatarray[1]=='T'?true:false);
-        jCheckBox2.addActionListener(new java.awt.event.ActionListener() {
+        Seat2.setBackground(new java.awt.Color(153, 153, 153));
+        Seat2.setText("2");
+        Seat2.setEnabled(seatarray[1]=='T'?true:false);
+        Seat2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCheckBox2ActionPerformed(evt);
+                Seat2ActionPerformed(evt);
             }
         });
 
-        jCheckBox3.setText("4");
-        jCheckBox3.setEnabled(seatarray[3]=='T'?true:false);
-        jCheckBox3.addActionListener(new java.awt.event.ActionListener() {
+        Seat4.setBackground(new java.awt.Color(153, 153, 153));
+        Seat4.setText("4");
+        Seat4.setEnabled(seatarray[3]=='T'?true:false);
+        Seat4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCheckBox3ActionPerformed(evt);
+                Seat4ActionPerformed(evt);
             }
         });
 
-        jCheckBox4.setText("5");
-        jCheckBox4.setEnabled(seatarray[4]=='T'?true:false);
-        jCheckBox4.addActionListener(new java.awt.event.ActionListener() {
+        Seat5.setBackground(new java.awt.Color(153, 153, 153));
+        Seat5.setText("5");
+        Seat5.setEnabled(seatarray[4]=='T'?true:false);
+        Seat5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCheckBox4ActionPerformed(evt);
+                Seat5ActionPerformed(evt);
             }
         });
 
-        jCheckBox5.setText("3");
-        jCheckBox5.setEnabled(seatarray[2]=='T'?true:false);
-        jCheckBox5.addActionListener(new java.awt.event.ActionListener() {
+        Seat3.setBackground(new java.awt.Color(153, 153, 153));
+        Seat3.setText("3");
+        Seat3.setEnabled(seatarray[2]=='T'?true:false);
+        Seat3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCheckBox5ActionPerformed(evt);
+                Seat3ActionPerformed(evt);
             }
         });
 
-        jCheckBox6.setText("6");
-        jCheckBox6.setEnabled(seatarray[5]=='T'?true:false);
-        jCheckBox6.addActionListener(new java.awt.event.ActionListener() {
+        Seat6.setBackground(new java.awt.Color(153, 153, 153));
+        Seat6.setText("6");
+        Seat6.setEnabled(seatarray[5]=='T'?true:false);
+        Seat6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCheckBox6ActionPerformed(evt);
+                Seat6ActionPerformed(evt);
             }
         });
 
-        jCheckBox7.setText("7");
-        jCheckBox7.setEnabled(seatarray[6]=='T'?true:false);
-        jCheckBox7.addActionListener(new java.awt.event.ActionListener() {
+        Seat7.setBackground(new java.awt.Color(153, 153, 153));
+        Seat7.setText("7");
+        Seat7.setEnabled(seatarray[6]=='T'?true:false);
+        Seat7.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCheckBox7ActionPerformed(evt);
+                Seat7ActionPerformed(evt);
             }
         });
 
-        jCheckBox8.setText("8");
-        jCheckBox8.setEnabled(seatarray[7]=='T'?true:false);
-        jCheckBox8.addActionListener(new java.awt.event.ActionListener() {
+        Seat8.setBackground(new java.awt.Color(153, 153, 153));
+        Seat8.setText("8");
+        Seat8.setEnabled(seatarray[7]=='T'?true:false);
+        Seat8.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCheckBox8ActionPerformed(evt);
+                Seat8ActionPerformed(evt);
             }
         });
 
-        jCheckBox9.setText("9");
-        jCheckBox9.setEnabled(seatarray[8]=='T'?true:false);
-        jCheckBox9.addActionListener(new java.awt.event.ActionListener() {
+        Seat9.setBackground(new java.awt.Color(153, 153, 153));
+        Seat9.setText("9");
+        Seat9.setEnabled(seatarray[8]=='T'?true:false);
+        Seat9.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCheckBox9ActionPerformed(evt);
+                Seat9ActionPerformed(evt);
             }
         });
 
-        jCheckBox10.setText("10");
-        jCheckBox10.setEnabled(seatarray[9]=='T'?true:false);
-        jCheckBox10.addActionListener(new java.awt.event.ActionListener() {
+        Seat10.setBackground(new java.awt.Color(153, 153, 153));
+        Seat10.setText("10");
+        Seat10.setEnabled(seatarray[9]=='T'?true:false);
+        Seat10.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCheckBox10ActionPerformed(evt);
+                Seat10ActionPerformed(evt);
             }
         });
 
@@ -225,28 +235,28 @@ public class Seats extends javax.swing.JFrame {
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jCheckBox6)
+                                .addComponent(Seat6)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jCheckBox7)
+                                .addComponent(Seat7)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jCheckBox8)
+                                .addComponent(Seat8)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jCheckBox9)
+                                .addComponent(Seat9)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jCheckBox10))
+                                .addComponent(Seat10))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(jLabel2)
                                     .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jCheckBox1)
+                                        .addComponent(Seat1)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jCheckBox2)
+                                        .addComponent(Seat2)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(jCheckBox5)
+                                        .addComponent(Seat3)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jCheckBox3)))
+                                        .addComponent(Seat4)))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jCheckBox4)))
+                                .addComponent(Seat5)))
                         .addGap(117, 117, 117))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(BackToBT)
@@ -265,18 +275,18 @@ public class Seats extends javax.swing.JFrame {
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 94, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jCheckBox1)
-                    .addComponent(jCheckBox2)
-                    .addComponent(jCheckBox5)
-                    .addComponent(jCheckBox3)
-                    .addComponent(jCheckBox4))
+                    .addComponent(Seat1)
+                    .addComponent(Seat2)
+                    .addComponent(Seat3)
+                    .addComponent(Seat4)
+                    .addComponent(Seat5))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jCheckBox6)
-                    .addComponent(jCheckBox7)
-                    .addComponent(jCheckBox8)
-                    .addComponent(jCheckBox9)
-                    .addComponent(jCheckBox10))
+                    .addComponent(Seat6)
+                    .addComponent(Seat7)
+                    .addComponent(Seat8)
+                    .addComponent(Seat9)
+                    .addComponent(Seat10))
                 .addGap(71, 71, 71)
                 .addComponent(jLabel1)
                 .addGap(24, 24, 24))
@@ -285,95 +295,95 @@ public class Seats extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jCheckBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox1ActionPerformed
+    private void Seat1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Seat1ActionPerformed
         // TODO add your handling code here:
-        int i=Integer.parseInt(jCheckBox1.getText())-1;
+        int i=Integer.parseInt(Seat1.getText())-1;
         if(seatarray[i]=='F')
             seatarray[i]='T';
         else
             seatarray[i]='F';
-    }//GEN-LAST:event_jCheckBox1ActionPerformed
+    }//GEN-LAST:event_Seat1ActionPerformed
 
-    private void jCheckBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox2ActionPerformed
+    private void Seat2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Seat2ActionPerformed
         // TODO add your handling code here:
-         int i=Integer.parseInt(jCheckBox2.getText())-1;
+         int i=Integer.parseInt(Seat2.getText())-1;
         if(seatarray[i]=='F')
             seatarray[i]='T';
         else
             seatarray[i]='F';
-    }//GEN-LAST:event_jCheckBox2ActionPerformed
+    }//GEN-LAST:event_Seat2ActionPerformed
 
-    private void jCheckBox3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox3ActionPerformed
+    private void Seat4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Seat4ActionPerformed
         // TODO add your handling code here:
-         int i=Integer.parseInt(jCheckBox3.getText())-1;
+         int i=Integer.parseInt(Seat4.getText())-1;
         if(seatarray[i]=='F')
             seatarray[i]='T';
         else
             seatarray[i]='F';
-    }//GEN-LAST:event_jCheckBox3ActionPerformed
+    }//GEN-LAST:event_Seat4ActionPerformed
 
-    private void jCheckBox4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox4ActionPerformed
+    private void Seat5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Seat5ActionPerformed
         // TODO add your handling code here:
-         int i=Integer.parseInt(jCheckBox4.getText())-1;
+         int i=Integer.parseInt(Seat5.getText())-1;
         if(seatarray[i]=='F')
             seatarray[i]='T';
         else
             seatarray[i]='F';
-    }//GEN-LAST:event_jCheckBox4ActionPerformed
+    }//GEN-LAST:event_Seat5ActionPerformed
 
-    private void jCheckBox5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox5ActionPerformed
+    private void Seat3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Seat3ActionPerformed
         // TODO add your handling code here:
-         int i=Integer.parseInt(jCheckBox5.getText())-1;
+         int i=Integer.parseInt(Seat3.getText())-1;
         if(seatarray[i]=='F')
             seatarray[i]='T';
         else
             seatarray[i]='F';
-    }//GEN-LAST:event_jCheckBox5ActionPerformed
+    }//GEN-LAST:event_Seat3ActionPerformed
 
-    private void jCheckBox6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox6ActionPerformed
+    private void Seat6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Seat6ActionPerformed
         // TODO add your handling code here:
-         int i=Integer.parseInt(jCheckBox6.getText())-1;
+         int i=Integer.parseInt(Seat6.getText())-1;
         if(seatarray[i]=='F')
             seatarray[i]='T';
         else
             seatarray[i]='F';
-    }//GEN-LAST:event_jCheckBox6ActionPerformed
+    }//GEN-LAST:event_Seat6ActionPerformed
 
-    private void jCheckBox7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox7ActionPerformed
+    private void Seat7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Seat7ActionPerformed
         // TODO add your handling code here:
-         int i=Integer.parseInt(jCheckBox7.getText())-1;
+         int i=Integer.parseInt(Seat7.getText())-1;
         if(seatarray[i]=='F')
             seatarray[i]='T';
         else
             seatarray[i]='F';
-    }//GEN-LAST:event_jCheckBox7ActionPerformed
+    }//GEN-LAST:event_Seat7ActionPerformed
 
-    private void jCheckBox8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox8ActionPerformed
+    private void Seat8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Seat8ActionPerformed
         // TODO add your handling code here:
-         int i=Integer.parseInt(jCheckBox8.getText())-1;
+         int i=Integer.parseInt(Seat8.getText())-1;
         if(seatarray[i]=='F')
             seatarray[i]='T';
         else
             seatarray[i]='F';
-    }//GEN-LAST:event_jCheckBox8ActionPerformed
+    }//GEN-LAST:event_Seat8ActionPerformed
 
-    private void jCheckBox9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox9ActionPerformed
+    private void Seat9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Seat9ActionPerformed
         // TODO add your handling code here:
-         int i=Integer.parseInt(jCheckBox9.getText())-1;
+         int i=Integer.parseInt(Seat9.getText())-1;
         if(seatarray[i]=='F')
             seatarray[i]='T';
         else
             seatarray[i]='F';
-    }//GEN-LAST:event_jCheckBox9ActionPerformed
+    }//GEN-LAST:event_Seat9ActionPerformed
 
-    private void jCheckBox10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox10ActionPerformed
+    private void Seat10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Seat10ActionPerformed
         // TODO add your handling code here:
-         int i=Integer.parseInt(jCheckBox10.getText())-1;
+         int i=Integer.parseInt(Seat10.getText())-1;
         if(seatarray[i]=='F')
             seatarray[i]='T';
         else
             seatarray[i]='F';
-    }//GEN-LAST:event_jCheckBox10ActionPerformed
+    }//GEN-LAST:event_Seat10ActionPerformed
 
     private void BookSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BookSActionPerformed
         // TODO add your handling code here:
@@ -424,18 +434,18 @@ public class Seats extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BackToBT;
     private javax.swing.JButton BookS;
+    private javax.swing.JCheckBox Seat1;
+    private javax.swing.JCheckBox Seat10;
+    private javax.swing.JCheckBox Seat2;
+    private javax.swing.JCheckBox Seat3;
+    private javax.swing.JCheckBox Seat4;
+    private javax.swing.JCheckBox Seat5;
+    private javax.swing.JCheckBox Seat6;
+    private javax.swing.JCheckBox Seat7;
+    private javax.swing.JCheckBox Seat8;
+    private javax.swing.JCheckBox Seat9;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JButton jButton1;
-    private javax.swing.JCheckBox jCheckBox1;
-    private javax.swing.JCheckBox jCheckBox10;
-    private javax.swing.JCheckBox jCheckBox2;
-    private javax.swing.JCheckBox jCheckBox3;
-    private javax.swing.JCheckBox jCheckBox4;
-    private javax.swing.JCheckBox jCheckBox5;
-    private javax.swing.JCheckBox jCheckBox6;
-    private javax.swing.JCheckBox jCheckBox7;
-    private javax.swing.JCheckBox jCheckBox8;
-    private javax.swing.JCheckBox jCheckBox9;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     // End of variables declaration//GEN-END:variables

@@ -7,8 +7,35 @@ package mp1;
 
 import java.awt.Dimension;
 import java.awt.event.KeyEvent;
+import java.math.BigInteger;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.Properties;
+import java.util.Random;
+import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.mail.Message;
+import javax.mail.MessagingException;
+import javax.mail.PasswordAuthentication;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
+import javax.swing.JOptionPane;
+import static mp1.ForgetPassword.strFP;
+import static mp1.Login.strU;
 import static mp1.Movies.Mname;
 import static mp1.Movies.Maddress;
+import static mp1.BookTicket.FinalDate;
+import static mp1.BookTicket.FinalTime;
+import static mp1.BookTicket.FormatD;
+import static mp1.BookTicket.LanguageEH;
 
 /**
  *
@@ -18,7 +45,71 @@ public class Confirmation extends javax.swing.JFrame {
 
     /**
      * Creates new form Confirmation
+     * @param user
      */
+    String md5(String str){
+        String name= str;
+        try{
+            MessageDigest md = MessageDigest.getInstance("MD5");
+            md.update(name.getBytes(),0,name.length());
+             name= new BigInteger(1,md.digest()).toString(16);
+        }catch(NoSuchAlgorithmException e){
+            e.printStackTrace();
+        }
+        return name;
+}
+    public void SendEmail(String user){
+        int BookId;
+        String User= user;
+        Random ran = new Random();
+        BookId=ran.nextInt(1000000000);
+        String str=Integer.toString(BookId);
+        str=md5(str);
+        ForgetPassword f=new ForgetPassword();
+        Scanner sc = new Scanner(System.in);
+		final String username = "vectorparker0047@gmail.com"; // enter your mail id
+                System.out.print("Enter Admin Password : ");
+                String pwd=sc.nextLine();
+		final String password = pwd;// enter ur password
+
+		Properties props = new Properties();
+		props.put("mail.smtp.auth", "true");
+		props.put("mail.smtp.starttls.enable", "true");
+		props.put("mail.smtp.host", "smtp.gmail.com");
+		props.put("mail.smtp.port", "587");
+                props.put("mail.smtp.ssl.trust", "smtp.gmail.com");
+                props.put("mail.smtp.ssl.trust", "*");
+
+
+
+		Session session = Session.getInstance(props,
+		  new javax.mail.Authenticator() {
+                        @Override
+			protected PasswordAuthentication getPasswordAuthentication() {
+				return new PasswordAuthentication(username, password);
+			}
+		  });
+
+		try {
+
+			Message message = new MimeMessage(session);
+			message.setFrom(new InternetAddress("vectorparker0047@gmail.com")); // same email id
+			message.setRecipients(Message.RecipientType.TO,
+				InternetAddress.parse(User));// whome u have to send mails that person id
+			message.setSubject("KITICKET: Your Ticket is Here");
+			message.setText("Movie: "+Mname+"\nLanguage: "+LanguageEH+"\nFormat: "+FormatD+"\nDate: "+FinalDate+"\nTime: "+FinalTime+"\nBooking Id: "+str+"\n\nThank you for choosing us :-)\n\nRegards,\nKITICKET Team");
+                        System.out.println("Booking Id : "+str);
+                        
+			Transport.send(message);
+
+			//String res= JOptionPane.showInputDialog(f,"Email has been sent.\nEnter OTP....");
+                        //int i=Integer.parseInt(res);
+
+		} catch (MessagingException e) {
+			throw new RuntimeException(e);
+		}
+        
+    }
     public Confirmation() {
         initComponents();
     }
@@ -195,6 +286,30 @@ public class Confirmation extends javax.swing.JFrame {
 
     private void ConfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ConfActionPerformed
         // TODO add your handling code here:
+        String user;
+        //
+        String host = "jdbc:derby://localhost:1527/Users";
+       //strP=md5(strP);
+String uName = "username";
+String uPass= "password";
+    int flag=0;
+  
+     try {
+            Connection con;
+      con = DriverManager.getConnection( host,uName,uPass);
+      Statement stmt = con.createStatement();
+      String SQL = "SELECT * FROM Data WHERE USERNAME='"+strU+"'";
+      ResultSet rs=stmt.executeQuery(SQL);
+      rs.next();
+      user=rs.getString("CONTACT");
+      SendEmail(user);
+        } catch (SQLException ex) {
+            Logger.getLogger(DBTest.class.getName()).log(Level.SEVERE, null, ex);
+        }
+                        
+    
+        //
+        //SendEmail(user);
     }//GEN-LAST:event_ConfActionPerformed
 
     private void BackToBTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackToBTActionPerformed

@@ -34,7 +34,7 @@ import javax.swing.JOptionPane;
  * @author parth
  */
 public class Login extends javax.swing.JFrame {
-         
+            public static String strU;
              String md5(String str){
         String name= str;
         try{
@@ -333,7 +333,7 @@ public class Login extends javax.swing.JFrame {
                     //Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
                 }*/
                   Login l= new Login();
-                String strU=Username.getText();
+                 strU=Username.getText();
         String strP=Password.getText();
         strP=md5(strP);
                 if(strU.equals("") || strP.equals("")){

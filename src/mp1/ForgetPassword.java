@@ -36,7 +36,7 @@ public class ForgetPassword extends javax.swing.JFrame {
         int otp;
         String User= user;
         Random ran = new Random();
-        otp=ran.nextInt(100);
+        otp=ran.nextInt(1000000000);
         ForgetPassword f=new ForgetPassword();
         Scanner sc = new Scanner(System.in);
 		final String username = "vectorparker0047@gmail.com"; // enter your mail id
