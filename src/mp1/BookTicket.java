@@ -15,6 +15,8 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.Action;
+import javax.swing.DefaultComboBoxModel;
 import static mp1.Movies.Maddress;
 import static mp1.Movies.Mname;
 /**
@@ -23,6 +25,8 @@ import static mp1.Movies.Mname;
  */
 public class BookTicket extends javax.swing.JFrame {
     ResultSet rs;
+    public static String FinalTime;
+    public static String FinalDate;
     String MTimes[];
     String MDates[];
 
@@ -56,9 +60,9 @@ public class BookTicket extends javax.swing.JFrame {
                  DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");  
                   while(rs.next())
                   {
-                      MDates[count]=dateFormat.format(rs.getDate("Date"));
+                      MDates[count++]=dateFormat.format(rs.getDate("Date"));
                   }
-                  SQL = "SELECT DISTINCT TIME FROM SHOWS WHERE MOVIE='"+Mname+"'";
+                  SQL = "SELECT DISTINCT TIME FROM SHOWS WHERE MOVIE='"+Mname+"' AND DATE='"+MDates[0]+"'";
                   rs=stmt.executeQuery(SQL);
                  count=0;
                  while(rs.next())
@@ -67,10 +71,10 @@ public class BookTicket extends javax.swing.JFrame {
                  rs=stmt.executeQuery(SQL);
                  MTimes=new String[count];
                   count=0;
-                 dateFormat = new SimpleDateFormat("hh:mm:ss");  
+                 dateFormat = new SimpleDateFormat("HH:mm:ss");  
                   while(rs.next())
                   {
-                      MTimes[count]=dateFormat.format(rs.getTime("Time"));
+                      MTimes[count++]=dateFormat.format(rs.getTime("Time"));
                   }
                  
                 
@@ -113,17 +117,18 @@ public class BookTicket extends javax.swing.JFrame {
         jRadioButton4 = new javax.swing.JRadioButton();
         jLabel4 = new javax.swing.JLabel();
         BT = new javax.swing.JButton();
-        TimeL = new javax.swing.JComboBox<>();
+        jC2 = new javax.swing.JComboBox<>();
         jLabel6 = new javax.swing.JLabel();
         BackToMI = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        jC1 = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Book Ticket");
 
         Format.add(RBDim3);
+        RBDim3.setSelected(true);
         RBDim3.setText("3D");
         RBDim3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -144,6 +149,7 @@ public class BookTicket extends javax.swing.JFrame {
         jLabel3.setText("Language :");
 
         Language.add(jRadioButton3);
+        jRadioButton3.setSelected(true);
         jRadioButton3.setText("English");
 
         Language.add(jRadioButton4);
@@ -169,10 +175,10 @@ public class BookTicket extends javax.swing.JFrame {
             }
         });
 
-        TimeL.setModel(new javax.swing.DefaultComboBoxModel<>(MTimes));
-        TimeL.addActionListener(new java.awt.event.ActionListener() {
+        jC2.setModel(new javax.swing.DefaultComboBoxModel<>(MTimes));
+        jC2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                TimeLActionPerformed(evt);
+                jC2ActionPerformed(evt);
             }
         });
 
@@ -199,7 +205,12 @@ public class BookTicket extends javax.swing.JFrame {
         jLabel7.setPreferredSize(new java.awt.Dimension(33, 9));
         jLabel7.setRequestFocusEnabled(false);
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(MDates));
+        jC1.setModel(new javax.swing.DefaultComboBoxModel<>(MDates));
+        jC1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jC1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -218,11 +229,11 @@ public class BookTicket extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel4)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jC1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(178, 178, 178)
                                 .addComponent(jLabel6)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(TimeL, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(jC2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(9, 9, 9)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -273,10 +284,10 @@ public class BookTicket extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                 .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(TimeL, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(jC2, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                 .addComponent(jLabel4)
-                                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(jC1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(53, 53, 53))))
         );
 
@@ -294,7 +305,8 @@ public class BookTicket extends javax.swing.JFrame {
 
     private void BTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTActionPerformed
         // TODO add your handling code here:
-        
+        FinalDate=jC1.getSelectedItem().toString();
+        FinalTime=jC2.getSelectedItem().toString();
         Seats s=new Seats();
         s.setVisible(true);
     }//GEN-LAST:event_BTActionPerformed
@@ -304,9 +316,10 @@ public class BookTicket extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_BackToMIActionPerformed
 
-    private void TimeLActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TimeLActionPerformed
+    private void jC2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jC2ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_TimeLActionPerformed
+        
+    }//GEN-LAST:event_jC2ActionPerformed
 
     private void BTKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BTKeyPressed
         // TODO add your handling code here:
@@ -327,6 +340,67 @@ public class BookTicket extends javax.swing.JFrame {
     private void jRadioButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton4ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jRadioButton4ActionPerformed
+
+    private void jC1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jC1ActionPerformed
+        // TODO add your handling code here:
+        String host = "jdbc:derby://localhost:1527/Users";
+
+        
+        String uName = "username";
+        String uPass= "password";
+        try {
+            Connection con;
+      con = DriverManager.getConnection( host,uName,uPass);
+      Statement stmt = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
+      //String SQL = "SELECT * FROM Data";
+      
+      //Statement stmt = con.createStatement();
+       //String SQL = "SELECT DISTINCT DATE FROM SHOWS WHERE MOVIE='"+Mname+"'";
+       
+            try {
+                 /*rs=stmt.executeQuery(SQL);
+                 int count=0;
+                 while(rs.next())
+                     count++;
+                 System.out.println("Size of Date Array: "+count);
+                 rs=stmt.executeQuery(SQL);
+                 MDates=new String[count];
+                  count=0;
+                 DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");  
+                  while(rs.next())
+                  {
+                      MDates[count++]=dateFormat.format(rs.getDate("Date"));
+                  }*/
+                 String date=jC1.getSelectedItem().toString();
+                  String SQL = "SELECT DISTINCT TIME FROM SHOWS WHERE MOVIE='"+Mname+"' AND DATE='"+date+"'";
+                  rs=stmt.executeQuery(SQL);
+                 int count=0;
+                 while(rs.next())
+                     count++;
+                 System.out.println("Size of Time Array: "+count);
+                 rs=stmt.executeQuery(SQL);
+                 MTimes=new String[count];
+                  count=0;
+                 DateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");  
+                  while(rs.next())
+                  {
+                      MTimes[count++]=dateFormat.format(rs.getTime("Time"));
+                      System.out.println("Movie Time :  "+MTimes[count-1]);
+                  }
+                  DefaultComboBoxModel model = new DefaultComboBoxModel(MTimes);
+                  jC2.setModel(model);
+            } 
+            catch (SQLException ex) {
+                Logger.getLogger(SignUP.class.getName()).log(Level.SEVERE, null, ex);
+                
+            }
+      
+                
+        }
+        catch(SQLException e){
+                
+        }
+    }//GEN-LAST:event_jC1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -370,10 +444,10 @@ public class BookTicket extends javax.swing.JFrame {
     private javax.swing.ButtonGroup Format;
     private javax.swing.ButtonGroup Language;
     private javax.swing.JRadioButton RBDim3;
-    private javax.swing.JComboBox<String> TimeL;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.ButtonGroup buttonGroup2;
-    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JComboBox<String> jC1;
+    private javax.swing.JComboBox<String> jC2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
