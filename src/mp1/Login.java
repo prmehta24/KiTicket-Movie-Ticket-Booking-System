@@ -389,14 +389,14 @@ String uPass= "password";
         SignUP su=new SignUP();
         su.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
-/*
+
     private void formKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formKeyTyped
         // TODO add your handling code here:
-        if(evt.getKeyCode() == KeyEvent.VK_ENTER)
-            System.out.println("asefsutuip");
+        //if(evt.getKeyCode() == KeyEvent.VK_ENTER)
+            //System.out.println("asefsutuip");
             //SubmitActionPerformed(java.awt.event.ActionEvent evt);
     }//GEN-LAST:event_formKeyTyped
-*/
+
     private void PasswordKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_PasswordKeyPressed
         // TODO add your handling code here:
          if(evt.getKeyCode() == KeyEvent.VK_ENTER){

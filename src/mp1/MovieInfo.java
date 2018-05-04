@@ -212,8 +212,8 @@ public String Mcast,Mdescription;
 
     private void BookMTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BookMTActionPerformed
         // TODO add your handling code here:
-        BookTicket bt=new BookTicket();
-        bt.setVisible(true);
+        //BookTicket bt=new BookTicket();
+        new BookTicket().setVisible(true);
     }//GEN-LAST:event_BookMTActionPerformed
 
     private void BackToMActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackToMActionPerformed

@@ -188,7 +188,7 @@
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel11">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Seats :"/>
+        <Property name="text" type="java.lang.String" value="Seat No :"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="sEAT">

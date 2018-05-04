@@ -149,7 +149,9 @@ public class Admin extends javax.swing.JFrame {
             m.setVisible(true);
         }
         else if(AaM.isSelected()){
-            JTextField movie=new JTextField();
+            AddMovie am=new AddMovie();
+            am.setVisible(true);
+            /*JTextField movie=new JTextField();
             JTextField path=new JTextField();
             JTextField description=new JTextField();
             JTextField mcast=new JTextField();
@@ -203,6 +205,7 @@ public class Admin extends javax.swing.JFrame {
                     //System.out.println("Email/PhoneNo: "+user+" Password: "+pswd);
                     
                     //  }
+                   /* SignUP su=new SignUP();
                     JOptionPane.showMessageDialog(su,"Success...");
                 } catch (SQLException ex) {
                     Logger.getLogger(SignUP.class.getName()).log(Level.SEVERE, null, ex);
@@ -211,7 +214,7 @@ public class Admin extends javax.swing.JFrame {
              
         }
           
-        }
+        }*/
         }
         else if(RaM.isSelected()){
             try {
@@ -236,6 +239,7 @@ public class Admin extends javax.swing.JFrame {
                 } catch (SQLException ex) {
                     Logger.getLogger(SignUP.class.getName()).log(Level.SEVERE, null, ex);
                 }
+                 cmd= "DELETE FROM SHOWS WHERE MOVIE='"+RmName+"'";
             }catch(SQLException ex){
                 Logger.getLogger(Admin.class.getName()).log(Level.SEVERE, null, ex);
             }

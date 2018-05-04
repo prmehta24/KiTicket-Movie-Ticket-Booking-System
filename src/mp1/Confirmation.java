@@ -164,7 +164,7 @@ public class Confirmation extends javax.swing.JFrame {
 
         Loc.setText("KITICKET");
 
-        jLabel11.setText("Seats :");
+        jLabel11.setText("Seat No :");
 
         sEAT.setText(BookedSeats);
 
