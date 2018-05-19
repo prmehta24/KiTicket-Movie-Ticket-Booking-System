@@ -1,5 +1,5 @@
 # KiTicket - A Movie Ticket Booking System
-* By Parimal Mehta(prmehta24@gmail.com) and Parth Panchal.
+* By Parimal Mehta (prmehta24@gmail.com) and Parth Panchal.
 ## Software Used
 * NetBeans IDE for software development
 * Java Derby for Database Management
