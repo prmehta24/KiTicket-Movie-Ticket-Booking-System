@@ -28,6 +28,7 @@
 * The database is present in the 'database' folder.
 * You can see the official report [here](https://drive.google.com/open?id=16pYTVHOssDKzoUV5okhUeCSlk2PgRnFK).
 * You can see the screenshots in the 'Report' folder.
+* The source code can be found in the 'src/mp1' folder(.java files).
 * Please contact us in case of any queries.
 
 
