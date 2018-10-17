@@ -1,0 +1,36 @@
+body {
+
+}
+
+
+.nav {
+	position: fixed;
+	width: 100%;
+	background-color: grey;
+	z-index: 1;
+}
+
+.nav-l {
+	list-style-type: none;
+	margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: green;
+}
+
+.nav-l-el a{
+	float: left;
+	padding: 1%;
+	color: white;
+	font-size: 1.5vw;
+	font-weight: bold;
+	text-decoration: none;
+}
+.nav-l-el a:hover {
+	color: white;
+	background-color: #000;
+}
+
+#nav-l-el-lc a{
+	float: right;
+}
