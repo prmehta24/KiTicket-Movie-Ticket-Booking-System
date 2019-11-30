@@ -28,11 +28,21 @@
 * Connect to the database
 * Open the MP1 folder in NetBeans
 * Start by Running the Welcome.java file.
+## Diagrams
+As part of the IT601 Software Engineering Labs at Nirma University 2018-19, we have created diagrams and test cases for this project. You can find the following diagrams in the 'Diagrams' folder:
+* CRC Diagram
+* Class Diagram
+* Collaboration Diagram
+* Use Case Diagram
+* Sequence Diagram
+* State Diagram
+* Activity Diagram
 ## Further Information
 * The database is present in the 'database' folder.
 * You can see the official report [here](https://drive.google.com/open?id=16pYTVHOssDKzoUV5okhUeCSlk2PgRnFK).
 * You can see the screenshots in the 'Report' folder.
 * The source code can be found in the 'src/mp1' folder (.java files).
 * Please contact us in case of any queries.
+
 
 
